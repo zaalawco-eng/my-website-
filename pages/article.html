@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="قراءة المقال القانوني بالكامل - مكتب زياد العياضي للمحاماة والاستشارات القانونية.">
+  <title id="page-title">المقال القانوني | مكتب زياد العياضي للمحاماة</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=El+Messiri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    body {
+      background: var(--bg-cream);
+      color: var(--ink-dark);
+    }
+    .article-container {
+      max-width: 850px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+    .article-card {
+      background: var(--white);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+    .article-cover {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .article-header {
+      padding: 40px 40px 20px;
+    }
+    .article-meta {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .article-meta-cat {
+      background: var(--olive-dark);
+      color: var(--white);
+      padding: 3px 10px;
+      border-radius: var(--r-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .article-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--olive-dark);
+      line-height: 1.4;
+      margin: 0;
+    }
+    .article-body {
+      padding: 0 40px 40px;
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text-body);
+      white-space: pre-line;
+    }
+    .article-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--olive-mid);
+      text-decoration: none;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--ease-fast);
+    }
+    .article-back-btn:hover {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+    .error-container {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .error-container i {
+      font-size: 4rem;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .article-container { margin-top: 100px; }
+      .article-header { padding: 24px 20px 15px; }
+      .article-title { font-size: 1.7rem; }
+      .article-body { padding: 0 20px 30px; font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="loader">
+    <img src="../assets/images/logo-dark.png" alt="زياد العياضي" class="loader-logo-img">
+    <div class="loader-progress"><div class="loader-bar"></div></div>
+  </div>
+
+  <!-- Header -->
+  <nav id="navbar" class="scrolled">
+    <div class="container nav-container">
+      <a href="../index.html#hero" class="nav-logo">
+        <img src="../assets/images/logo-dark.png" alt="زياد العياضي" class="nav-logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#hero">الرئيسية</a>
+        <a href="../index.html#about">من نحن</a>
+        <a href="../index.html#services">خدماتنا</a>
+        <a href="../index.html#process">كيف نعمل</a>
+        <a href="blog.html" class="active">المدونة</a>
+        <a href="../index.html#contact">تواصل معنا</a>
+      </div>
+      <div class="nav-actions">
+        <button class="lang-btn" onclick="location.href='#'">EN</button>
+        <a href="../index.html#booking-cta" class="btn btn-gold btn-sm">
+          <i class="fa-regular fa-calendar-check"></i>
+          احجز استشارة
+        </a>
+        <div class="hamburger" id="ham" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobileMenu">
+    <span class="mobile-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></span>
+    <a href="../index.html#hero" onclick="toggleMenu()">الرئيسية</a>
+    <a href="../index.html#about" onclick="toggleMenu()">من نحن</a>
+    <a href="../index.html#services" onclick="toggleMenu()">خدماتنا</a>
+    <a href="../index.html#process" onclick="toggleMenu()">كيف نعمل</a>
+    <a href="blog.html" onclick="toggleMenu()">المدونة</a>
+    <a href="../index.html#contact" onclick="toggleMenu()">تواصل معنا</a>
+    <a href="../index.html#booking-cta" class="btn btn-gold" style="margin-top:20px;">احجز استشارة</a>
+  </div>
+
+  <main class="article-container">
+    <a href="blog.html" class="article-back-btn">
+      <i class="fa-solid fa-arrow-right"></i> العودة للمدونة
+    </a>
+
+    <div class="article-card" id="article-card" style="display: none;">
+      <img id="article-cover" class="article-cover" src="" style="display: none;">
+      <div class="article-header">
+        <div class="article-meta">
+          <span class="article-meta-cat" id="article-cat">—</span>
+          <span id="article-date"><i class="fa-regular fa-calendar"></i> —</span>
+        </div>
+        <h1 class="article-title" id="article-title">—</h1>
+      </div>
+      <div class="article-body" id="article-body">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+
+    <div class="error-container" id="error-container" style="display: none;">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h2 style="font-family: var(--font-heading); color: var(--olive-dark);">عذراً، المقال غير موجود</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">قد يكون تم حذف المقال أو الرابط الذي تتبعه غير صحيح.</p>
+      <a href="blog.html" class="btn btn-gold">العودة إلى المدونة</a>
+    </div>
+
+    <div class="loading-state" id="loading-state" style="text-align: center; padding: 100px 0;">
+      <i class="fa-solid fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--gold);"></i>
+      <p style="margin-top: 15px; color: var(--text-muted); font-family: var(--font-ui);">جاري تحميل المقال...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="ft-brand">
+          <div class="ft-logo">
+            <img src="../assets/images/logo-light.png" alt="زياد العياضي" class="ft-logo-img">
+          </div>
+          <p class="ft-desc">
+            شريككم القانوني الموثوق في تقديم الحلول القانونية المتكاملة للأفراد والشركات والجهات الحكومية، وفق أعلى معايير المهنية والنزاهة.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 مكتب زياد العياضي للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    // Page Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+        }
+      }, 500);
+    });
+
+    // Mobile Menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('ham');
+      if (menu) menu.classList.toggle('open');
+      if (ham) ham.classList.toggle('active');
+    }
+
+    const categoryMap = {
+      'commercial': 'قانون تجاري',
+      'labor': 'قانون عمالي',
+      'estate': 'عقارات'
+    };
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    async function loadArticle() {
+      const id = getQueryParam('id');
+      const loading = document.getElementById('loading-state');
+      const card = document.getElementById('article-card');
+      const errorDiv = document.getElementById('error-container');
+
+      if (!id || !window.supabaseClient) {
+        loading.style.display = 'none';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      try {
+        const { data: art, error } = await window.supabaseClient
+          .from('articles')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (error || !art) throw error || new Error('Not found');
+
+        // Render Article
+        document.getElementById('page-title').textContent = art.title + ' | مكتب زياد العياضي';
+        document.getElementById('article-title').textContent = art.title;
+        document.getElementById('article-cat').textContent = categoryMap[art.category] || 'ثقافة قانونية';
+        
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dateStr = new Date(art.created_at).toLocaleDateString('ar-SA', dateOptions);
+        document.getElementById('article-date').innerHTML = `<i class="fa-regular fa-calendar"></i> ${dateStr}`;
+        
+        document.getElementById('article-body').textContent = art.content;
+
+        const cover = document.getElementById('article-cover');
+        if (art.image_base64) {
+          cover.src = art.image_base64;
+          cover.style.display = 'block';
+        } else {
+          cover.style.display = 'none';
+        }
+
+        loading.style.display = 'none';
+        card.style.display = 'block';
+
+      } catch (err) {
+        console.error(err);
+        loading.style.display = 'none';
+        errorDiv.style.display = 'block';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadArticle);
+  </script>
+</body>
+</html>

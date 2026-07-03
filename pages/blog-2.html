@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دليل قانوني تفصيلي يوضح حقوق المستحقات النظامية للموظفين في القطاع الخاص عند إنهاء علاقة العمل وفقاً لنظام العمل السعودي ولائحته التنفيذية.">
+  <title>حقوق الموظف عند إنهاء عقد العمل | زياد العياضي للمحاماة</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=El+Messiri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    body { background: var(--bg-cream); }
+    .post-header {
+      padding: 150px 0 60px;
+      background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
+      color: var(--white);
+      position: relative;
+    }
+    .breadcrumbs {
+      display: flex;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      font-family: var(--font-ui);
+    }
+    .breadcrumbs a { color: rgba(255,255,255,0.7); }
+    .breadcrumbs a:hover { color: var(--white); }
+    .post-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .post-meta-details {
+      display: flex;
+      gap: 20px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-ui);
+    }
+    .post-meta-details i { color: var(--gold); margin-left: 6px; }
+    
+    .post-layout {
+      display: grid;
+      grid-template-columns: 2.4fr 1fr;
+      gap: 40px;
+      padding: 60px 0 100px;
+    }
+    .post-main-content {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-md);
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    }
+    .post-featured-img {
+      width: 100%;
+      height: 380px;
+      border-radius: var(--r-sm);
+      object-fit: cover;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-md);
+    }
+    .post-body-text {
+      font-family: 'Amiri', serif;
+      font-size: 1.25rem;
+      line-height: 2.1;
+      color: var(--text-body);
+    }
+    .post-body-text h3 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--olive-dark);
+      margin: 35px 0 15px;
+      font-weight: 700;
+    }
+    .post-body-text p {
+      margin-bottom: 20px;
+    }
+    .post-body-text ul {
+      margin: 15px 25px 25px 0;
+      list-style-type: square;
+    }
+    .post-body-text li {
+      margin-bottom: 10px;
+    }
+    
+    .quote-box {
+      background: var(--bg-cream);
+      border-right: 4px solid var(--gold);
+      padding: 24px;
+      border-radius: 4px;
+      font-style: italic;
+      margin: 30px 0;
+    }
+    
+    /* Sidebar */
+    .post-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .sidebar-widget {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-md);
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    }
+    .widget-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--olive-dark);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-soft);
+      position: relative;
+    }
+    .widget-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; right: 0;
+      width: 40px; height: 2px;
+      background: var(--gold);
+    }
+    
+    .recent-posts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .recent-post-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      text-decoration: none;
+    }
+    .recent-post-img {
+      width: 64px; height: 64px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .recent-post-info h4 {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink-dark);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      transition: var(--ease-fast);
+    }
+    .recent-post-info h4:hover {
+      color: var(--olive-mid);
+    }
+    .recent-post-info span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    
+    .sidebar-cta-widget {
+      background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+    .sidebar-cta-widget h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .sidebar-cta-widget p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 992px) {
+      .post-layout { grid-template-columns: 1fr; }
+      .post-main-content { padding: 24px; }
+      .post-featured-img { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="page-loader" id="loader">
+    <img src="../assets/images/logo-dark.png" alt="زياد العياضي" class="loader-logo-img">
+    <div class="loader-progress"><div class="loader-bar"></div></div>
+    <p class="loader-text">نبني الثقة... ونحمي الحقوق</p>
+  </div>
+
+  <!-- Header -->
+  <nav id="navbar" class="scrolled">
+    <div class="container nav-container">
+      <a href="../index.html#hero" class="nav-logo">
+        <img src="../assets/images/logo-dark.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="nav-logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#hero">الرئيسية</a>
+        <a href="../index.html#about">من نحن</a>
+        <a href="../index.html#services">خدماتنا</a>
+        <a href="../index.html#process">كيف نعمل</a>
+        <a href="blog.html" class="active">المدونة</a>
+        <a href="../index.html#contact">تواصل معنا</a>
+      </div>
+      <div class="nav-actions">
+        <button class="lang-btn">EN</button>
+        <a href="../index.html#booking-cta" class="btn btn-gold btn-sm">
+          <i class="fa-regular fa-calendar-check"></i>
+          احجز استشارة
+        </a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobileMenu">
+    <span class="mobile-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></span>
+    <a href="../index.html#hero" onclick="toggleMenu()">الرئيسية</a>
+    <a href="../index.html#about" onclick="toggleMenu()">من نحن</a>
+    <a href="../index.html#services" onclick="toggleMenu()">خدماتنا</a>
+    <a href="../index.html#process" onclick="toggleMenu()">كيف نعمل</a>
+    <a href="blog.html" onclick="toggleMenu()">المدونة</a>
+    <a href="../index.html#contact" onclick="toggleMenu()">تواصل معنا</a>
+    <a href="../index.html#booking-cta" class="btn btn-gold" style="margin-top:20px;">احجز استشارة</a>
+  </div>
+
+  <!-- Post Header -->
+  <header class="post-header">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">الرئيسية</a> &gt;
+        <a href="blog.html">المدونة</a> &gt;
+        <span>حقوق الموظف عند إنهاء العقد</span>
+      </div>
+      <h1 class="post-title">حقوق الموظف عند إنهاء عقد العمل: دليل شامل وفق نظام العمل</h1>
+      <div class="post-meta-details">
+        <span><i class="fa-regular fa-calendar"></i> 8 يونيو 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 7 دقائق قراءة</span>
+        <span><i class="fa-regular fa-folder-open"></i> قانون عمالي</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Layout -->
+  <div class="container post-layout">
+    <!-- Main -->
+    <main class="post-main-content">
+      <img src="../assets/images/blog-labor.png" alt="حقوق الموظف في النظام السعودي" class="post-featured-img">
+      <div class="post-body-text">
+        <p>
+          يحدد نظام العمل السعودي بوضوح تام القواعد والشروط المنظمة لإنهاء العلاقة التعاقدية بين العامل وصاحب العمل، لضمان حماية حقوق الطرفين ومنع الإجراءات التعسفية التي قد تضر بمصالح العمال أو أصحاب العمل.
+        </p>
+
+        <h3>1. مكافأة نهاية الخدمة</h3>
+        <p>
+          تعد مكافأة نهاية الخدمة حقاً أصيلاً للعامل على صاحب العمل، وتُحسب على النحو التالي:
+        </p>
+        <ul>
+          <li>أجر نصف شهر عن كل سنة من السنوات الخمس الأولى.</li>
+          <li>أجر شهر كامل عن كل سنة من السنوات التالية.</li>
+          <li>يُعتمد الأجر الأخير كأصل لحساب هذه المكافأة، ويستحق العامل مكافأة عن أجزاء السنة بنسبة ما قضاه منها في العمل.</li>
+        </ul>
+
+        <div class="quote-box">
+          "في حال استقالة العامل، يستحق ثلث المكافأة إذا كانت خدمته بين سنتين وخمس سنوات، وثلثيها إذا كانت خدمته بين خمس وعشر سنوات، والمكافأة كاملة إذا بلغت خدمته عشر سنوات فأكثر."
+        </div>
+
+        <h3>2. مهلة الإنذار (فترة الإشعار)</h3>
+        <p>
+          إذا كان العقد غير محدد المدة، وجب على الطرف الذي يرغب في إنهائه إشعار الطرف الآخر كتابةً قبل الإنهاء بمدة لا تقل عن 60 يوماً إذا كان أجر العامل يدفع شهرياً، أو 30 يوماً لغير ذلك. وفي حال عدم الالتزام بمهلة الإنذار، يجب دفع تعويض مالي يعادل أجر العامل عن نفس الفترة.
+        </p>
+
+        <h3>3. التعويض عن الفصل غير المشروع (التعسفي)</h3>
+        <p>
+          إذا تم إنهاء العقد لسبب غير مشروع، يحق للطرف المتضرر المطالبة بتعويض مالي تُقدره المحكمة العمالية، أو يُحتسب بموجب ما نُص عليه في نظام العمل:
+        </p>
+        <ul>
+          <li>أجر 15 يوماً عن كل سنة من سنوات خدمة العامل إذا كان العقد غير محدد المدة.</li>
+          <li>أجر المدة المتبقية من العقد إذا كان العقد محدد المدة.</li>
+          <li>يجب ألا يقل التعويض في الحالتين عن أجر العامل لمدة شهرين.</li>
+        </ul>
+
+        <h3>4. رصيد الإجازات السنوية غير المستخدمة</h3>
+        <p>
+          يستحق العامل عند ترك العمل الحصول على أجرة نقدية عن أيام الإجازة السنوية المستحقة التي لم يتمتع بها، محسوبة على أساس الأجر الفعلي الأخير الذي كان يتقاضاه عند تركه للعمل.
+        </p>
+      </div>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <!-- Recent -->
+      <div class="sidebar-widget">
+        <h3 class="widget-title">مقالات ذات صلة</h3>
+        <div class="recent-posts-list">
+          <a href="blog-1.html" class="recent-post-item">
+            <img src="../assets/images/blog-commercial.png" alt="تعديل نظام الشركات" class="recent-post-img">
+            <div class="recent-post-info">
+              <h4>أبرز التعديلات على نظام الشركات</h4>
+              <span>15 يونيو 2026</span>
+            </div>
+          </a>
+          <a href="blog-3.html" class="recent-post-item">
+            <img src="../assets/images/blog-estate.png" alt="عقود البيع العقاري" class="recent-post-img">
+            <div class="recent-post-info">
+              <h4>نصائح قانونية قبل توقيع العقد العقاري</h4>
+              <span>1 يونيو 2026</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="sidebar-widget sidebar-cta-widget">
+        <h3>هل تواجه مشكلة عمالية؟</h3>
+        <p>فريقنا من المستشارين متخصص في تسوية الخلافات العمالية وتمثيل أصحاب العمل والموظفين أمام الهيئات العمالية.</p>
+        <a href="../index.html#booking-cta" class="btn btn-gold btn-sm">احجز موعد استشارة</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="ft-brand">
+          <div class="ft-logo">
+            <img src="../assets/images/logo-light.png" alt="زياد العياضي" class="ft-logo-img">
+          </div>
+          <p class="ft-desc">
+            شريككم القانوني الموثوق في تقديم الحلول القانونية المتكاملة للأفراد والشركات والجهات الحكومية، وفق أعلى معايير المهنية والنزاهة والامتثال للأنظمة السعودية.
+          </p>
+        </div>
+
+        <div class="ft-col">
+          <h5>روابط سريعة</h5>
+          <ul>
+            <li><a href="../index.html#hero">الرئيسية</a></li>
+            <li><a href="blog.html">المدونة</a></li>
+            <li><a href="../index.html#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 مكتب زياد العياضي للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const l = document.getElementById('loader');
+        if (l) { l.style.opacity = '0'; setTimeout(() => l.remove(), 500); }
+      }, 500);
+    });
+
+    function toggleMenu() {
+      const m = document.getElementById('mobileMenu');
+      if (m) m.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

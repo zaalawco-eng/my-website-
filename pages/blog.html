@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="المدونة القانونية لزياد العياضي للاستشارات القانونية والمحاماة. مقالات، شروحات ونشرات قانونية تغطي الأنظمة السعودية.">
+  <title>المدونة القانونية | زياد العياضي للمحاماة والاستشارات</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=El+Messiri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Blog-specific style adjustments */
+    body {
+      background: var(--bg-cream);
+    }
+    .blog-hero {
+      background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
+      padding: 140px 0 80px;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(212,175,55,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .blog-hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .blog-hero-title em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+    .blog-hero-desc {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+    }
+    .blog-filter-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-soft);
+      background: var(--white);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+    .blog-filters-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      color: var(--text-body);
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      transition: var(--ease-fast);
+    }
+    .filter-tab:hover {
+      border-color: var(--olive-mid);
+      color: var(--olive-dark);
+    }
+    .filter-tab.active {
+      background: var(--olive-dark);
+      border-color: var(--olive-dark);
+      color: var(--white);
+    }
+    .blog-search-box {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+    .blog-search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-sm);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: var(--bg-cream);
+      transition: var(--ease-fast);
+    }
+    .blog-search-box input:focus {
+      background: var(--white);
+      border-color: var(--olive-mid);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(37,96,64,0.15);
+    }
+    .blog-search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .blog-content-area {
+      padding: 60px 0 100px;
+    }
+    .blog-grid-full {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--white);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border-soft);
+    }
+    .no-results i {
+      font-size: 3.5rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .no-results h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--ink-dark);
+      margin-bottom: 8px;
+    }
+    .no-results p {
+      font-size: 0.92rem;
+      color: var(--text-body);
+    }
+    
+    @media (max-width: 1024px) {
+      .blog-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+    @media (max-width: 768px) {
+      .blog-hero { padding: 120px 0 60px; }
+      .blog-hero-title { font-size: 2.2rem; }
+      .blog-filters-container { flex-direction: column; align-items: stretch; }
+      .blog-search-box { max-width: 100%; }
+      .blog-grid-full { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Page Loader ── -->
+  <div class="page-loader" id="loader">
+    <img src="../assets/images/logo-dark.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="loader-logo-img">
+    <div class="loader-progress"><div class="loader-bar"></div></div>
+    <p class="loader-text">نبني الثقة... ونحمي الحقوق</p>
+  </div>
+
+  <!-- ── Header ── -->
+  <nav id="navbar" class="scrolled">
+    <div class="container nav-container">
+      <a href="../index.html#hero" class="nav-logo">
+        <img src="../assets/images/logo-dark.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="nav-logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#hero">الرئيسية</a>
+        <a href="../index.html#about">من نحن</a>
+        <a href="../index.html#services">خدماتنا</a>
+        <a href="../index.html#process">كيف نعمل</a>
+        <a href="#" class="active">المدونة</a>
+        <a href="../index.html#contact">تواصل معنا</a>
+      </div>
+      <div class="nav-actions">
+        <button class="lang-btn" onclick="location.href='#'">EN</button>
+        <a href="../index.html#booking-cta" class="btn btn-gold btn-sm">
+          <i class="fa-regular fa-calendar-check"></i>
+          احجز استشارة
+        </a>
+        <div class="hamburger" id="ham" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobileMenu">
+    <span class="mobile-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></span>
+    <a href="../index.html#hero" onclick="toggleMenu()">الرئيسية</a>
+    <a href="../index.html#about" onclick="toggleMenu()">من نحن</a>
+    <a href="../index.html#services" onclick="toggleMenu()">خدماتنا</a>
+    <a href="../index.html#process" onclick="toggleMenu()">كيف نعمل</a>
+    <a href="#" onclick="toggleMenu()">المدونة</a>
+    <a href="../index.html#contact" onclick="toggleMenu()">تواصل معنا</a>
+    <a href="../index.html#booking-cta" class="btn btn-gold" style="margin-top:20px;">احجز استشارة</a>
+  </div>
+
+  <!-- ── Blog Hero ── -->
+  <header class="blog-hero">
+    <div class="container">
+      <h1 class="blog-hero-title">المدونة <em>القانونية</em></h1>
+      <p class="blog-hero-desc">
+        رؤى قانونية متكاملة، ونشرات تشريعية تبسط الأنظمة واللوائح السعودية لرواد الأعمال، الشركات، والأفراد.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── Filter & Search Section ── -->
+  <section class="blog-filter-section">
+    <div class="container blog-filters-container">
+      <!-- Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterCategory('all', this)">كل المقالات</button>
+        <button class="filter-tab" onclick="filterCategory('commercial', this)">قانون تجاري</button>
+        <button class="filter-tab" onclick="filterCategory('labor', this)">قانون عمالي</button>
+        <button class="filter-tab" onclick="filterCategory('estate', this)">عقارات</button>
+      </div>
+
+      <!-- Search -->
+      <div class="blog-search-box">
+        <input type="text" id="blogSearch" placeholder="ابحث عن مقال..." onkeyup="searchBlog()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog Grid Area ── -->
+  <main class="blog-content-area">
+    <div class="container">
+      <div class="blog-grid-full" id="blogGrid">
+
+        <!-- Card 1 -->
+        <article class="blog-card" data-category="commercial">
+          <div class="blog-img">
+            <img src="../assets/images/blog-commercial.png" alt="أبرز التعديلات على نظام الشركات السعودي" class="blog-real-img">
+            <span class="blog-cat-badge">قانون تجاري</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> 15 يونيو 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 د</span>
+            </div>
+            <h3 class="blog-title">أبرز التعديلات على نظام الشركات السعودي وأثرها على المستثمرين</h3>
+            <p class="blog-excerpt">
+              استعراض شامل للتعديلات الأخيرة على نظام الشركات الجديد في المملكة العربية السعودية وكيفية التكيف معها لحماية مصالح الشركات وتسهيل دخول المستثمرين المحليين والأجانب.
+            </p>
+            <a href="blog-1.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="blog-card" data-category="labor">
+          <div class="blog-img">
+            <img src="../assets/images/blog-labor.png" alt="حقوق الموظف عند إنهاء عقد العمل" class="blog-real-img">
+            <span class="blog-cat-badge">قانون عمالي</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> 8 يونيو 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 7 د</span>
+            </div>
+            <h3 class="blog-title">حقوق الموظف عند إنهاء عقد العمل: دليل شامل وفق نظام العمل</h3>
+            <p class="blog-excerpt">
+              تعرف بالتفصيل على الحقوق والمستحقات النظامية للموظف عند انتهاء أو إنهاء علاقة العمل في السعودية، شاملة مكافأة نهاية الخدمة، مهلة الإنذار، والتعويض عن الفصل التعسفي.
+            </p>
+            <a href="blog-2.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="blog-card" data-category="estate">
+          <div class="blog-img">
+            <img src="../assets/images/blog-estate.png" alt="نصائح قانونية قبل توقيع عقد البيع العقاري" class="blog-real-img">
+            <span class="blog-cat-badge">عقارات</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> 1 يونيو 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 4 د</span>
+            </div>
+            <h3 class="blog-title">نصائح قانونية ضرورية قبل توقيع عقد البيع العقاري في السعودية</h3>
+            <p class="blog-excerpt">
+              دليل عملي يستعرض أهم الالتزامات والبنود التي يجب التحقق منها والتثبت من ملكيتها وسريان الصكوك قبل الإقدام على توقيع عقود بيع العقارات السكنية والتجارية.
+            </p>
+            <a href="blog-3.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <i class="fa-regular fa-folder-open"></i>
+        <h3>لا توجد نتائج مطابقة</h3>
+        <p>جرب استخدام كلمات بحث مختلفة أو تصفح الأقسام الأخرى.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="ft-brand">
+          <div class="ft-logo">
+            <img src="../assets/images/logo-light.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="ft-logo-img">
+          </div>
+          <p class="ft-desc">
+            شريككم القانوني الموثوق في تقديم الحلول القانونية المتكاملة للأفراد والشركات والجهات الحكومية، وفق أعلى معايير المهنية والنزاهة والامتثال للأنظمة السعودية.
+          </p>
+          <div class="ft-social">
+            <a href="#" title="تويتر"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" title="لينكدإن"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" title="انستغرام"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="ft-col">
+          <h5>روابط سريعة</h5>
+          <ul>
+            <li><a href="../index.html#hero">الرئيسية</a></li>
+            <li><a href="../index.html#about">من نحن</a></li>
+            <li><a href="../index.html#services">خدماتنا</a></li>
+            <li><a href="../index.html#process">كيف نعمل</a></li>
+            <li><a href="../index.html#testimonials">آراء العملاء</a></li>
+            <li><a href="../index.html#faq">الأسئلة الشائعة</a></li>
+            <li><a href="#">المدونة</a></li>
+            <li><a href="../index.html#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h5>خدماتنا</h5>
+          <ul>
+            <li><a href="../index.html#services">القضايا التجارية</a></li>
+            <li><a href="../index.html#services">القضايا المدنية</a></li>
+            <li><a href="../index.html#services">الأحوال الشخصية</a></li>
+            <li><a href="../index.html#services">القضايا العمالية</a></li>
+            <li><a href="../index.html#services">القضايا الجنائية</a></li>
+            <li><a href="../index.html#services">العقارات</a></li>
+            <li><a href="../index.html#services">الملكية الفكرية</a></li>
+            <li><a href="../index.html#services">الاستشارات</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 مكتب زياد العياضي للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.</p>
+        <p>مصمم بكل فخامة وإتقان.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    // Page Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+        }
+      }, 800);
+    });
+
+    // Mobile Menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('ham');
+      if (menu) menu.classList.toggle('open');
+      if (ham) ham.classList.toggle('active');
+    }
+
+    // Category Filtering
+    let currentCategory = 'all';
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      
+      // Update active tab
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      
+      applyFilters();
+    }
+
+    // Search Filtering
+    function searchBlog() {
+      applyFilters();
+    }
+
+    // Apply combined filters
+    function applyFilters() {
+      const query = document.getElementById('blogSearch').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.blog-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const title = card.querySelector('.blog-title').innerText.toLowerCase();
+        const excerpt = card.querySelector('.blog-excerpt').innerText.toLowerCase();
+        
+        const matchesCategory = (currentCategory === 'all' || cat === currentCategory);
+        const matchesSearch = (!query || title.includes(query) || excerpt.includes(query));
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/Hide No Results banner
+      const noResults = document.getElementById('noResults');
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    // Dynamic Loading from Supabase
+    let dynamicArticles = [];
+
+    async function loadDynamicArticles() {
+      if (!window.supabaseClient) return;
+      try {
+        const { data, error } = await window.supabaseClient
+          .from('articles')
+          .select('*')
+          .eq('status', 'published')
+          .order('created_at', { ascending: false });
+        if (!error && data) {
+          dynamicArticles = data;
+          renderDynamicArticles(dynamicArticles);
+        }
+      } catch (e) {
+        console.error("Error loading articles from Supabase: ", e);
+      }
+    }
+
+    function renderDynamicArticles(articles) {
+      const grid = document.getElementById('blogGrid');
+      if (!grid) return;
+      
+      const categoryMap = {
+        'commercial': 'قانون تجاري',
+        'labor': 'قانون عمالي',
+        'estate': 'عقارات'
+      };
+
+      const html = articles.map(art => {
+        const badgeText = categoryMap[art.category] || 'قانون تجاري';
+        const imgHtml = art.image_base64 
+          ? `<img src="${art.image_base64}" alt="${art.title}" class="blog-real-img" style="height:220px; object-fit:cover;">`
+          : `<div style="height:220px;background:rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:3rem;"><i class="fa-regular fa-image"></i></div>`;
+        
+        return `
+          <article class="blog-card" data-category="${art.category || 'commercial'}">
+            <a href="article.html?id=${art.id}" style="display:block; text-decoration:none; color:inherit;">
+              <div class="blog-img">
+                ${imgHtml}
+                <span class="blog-cat-badge">${badgeText}</span>
+              </div>
+            </a>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> ${formatDate(art.created_at)}</span>
+              </div>
+              <h3 class="blog-title" style="font-family:var(--font-heading);">
+                <a href="article.html?id=${art.id}" style="text-decoration:none; color:inherit;">${art.title}</a>
+              </h3>
+              <p class="blog-excerpt">${art.content.slice(0, 120)}${art.content.length > 120 ? '...' : ''}</p>
+              <a href="article.html?id=${art.id}" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+          </article>
+        `;
+      }).join('');
+      
+      // Prepend dynamic articles to the existing static ones
+      grid.innerHTML = html + grid.innerHTML;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '—';
+      const d = new Date(iso);
+      return d.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+
+
+    // Call dynamic loader on window load
+    window.addEventListener('DOMContentLoaded', loadDynamicArticles);
+  </script>
+</body>
+</html>

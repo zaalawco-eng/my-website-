@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="زياد العياضي للاستشارات القانونية والمحاماة — نبني الثقة ونحمي الحقوق. حلول قانونية متكاملة للأفراد والشركات وفق أعلى المعايير المهنية والامتثال للأنظمة السعودية ورؤية المملكة 2030.">
+  <meta name="keywords" content="محاماة، استشارات قانونية، زياد العياضي، محامي سعودي، قضايا تجارية، عقود، الرياض">
+  <title>زياد العياضي للاستشارات القانونية والمحاماة | نبني الثقة ونحمي الحقوق</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=El+Messiri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     PAGE LOADER
+     ════════════════════════════════════════ -->
+<div class="page-loader" id="loader">
+  <img src="assets/images/logo-dark.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="loader-logo-img">
+  <div class="loader-progress"><div class="loader-bar"></div></div>
+  <p class="loader-text">نبني الثقة... ونحمي الحقوق</p>
+</div>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+     ════════════════════════════════════════ -->
+<nav id="navbar" class="dark-nav">
+  <div class="container nav-container">
+
+    <a href="#hero" class="nav-logo">
+      <img src="assets/images/logo-light.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="nav-logo-img logo-light">
+      <img src="assets/images/logo-dark.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="nav-logo-img logo-dark">
+    </a>
+
+    <!-- Links -->
+    <div class="nav-links">
+      <a href="#hero"         id="n-home">الرئيسية</a>
+      <a href="#about"        id="n-about">من نحن</a>
+      <a href="#services"     id="n-services">خدماتنا</a>
+      <a href="#process"      id="n-process">كيف نعمل</a>
+      <a href="pages/blog.html" id="n-blog">المدونة</a>
+      <a href="#contact"      id="n-contact">تواصل معنا</a>
+    </div>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+
+      <!-- Guest: show login button -->
+      <a href="pages/auth.html" class="btn btn-sm" id="nav-login-btn"
+         style="border:1.5px solid var(--gold);color:var(--gold);background:transparent;display:none;">
+        <i class="fa-regular fa-user"></i>
+        تسجيل الدخول
+      </a>
+
+      <!-- Logged-in: show user menu -->
+      <div class="user-nav-menu" id="user-nav-menu" style="display:none;position:relative;">
+        <button class="user-nav-trigger" id="user-nav-trigger" onclick="toggleUserMenu()">
+          <i class="fa-solid fa-circle-user"></i>
+          <span id="nav-user-name"></span>
+          <i class="fa-solid fa-chevron-down" style="font-size:0.65rem;"></i>
+        </button>
+        <div class="user-nav-dropdown" id="user-nav-dropdown">
+          <div class="und-header">
+            <i class="fa-solid fa-circle-user" style="font-size:1.6rem;color:var(--olive-mid);"></i>
+            <div>
+              <strong id="und-name"></strong>
+              <span id="und-email"></span>
+            </div>
+          </div>
+          <hr style="border:none;border-top:1px solid var(--border-soft);margin:8px 0;">
+          <button class="und-item" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+          </button>
+        </div>
+      </div>
+
+      <a href="#booking-cta" class="btn btn-gold btn-sm" onclick="guardedOpenModal(event)">
+        <i class="fa-regular fa-calendar-check"></i>
+        احجز استشارة
+      </a>
+      <div class="hamburger" id="ham" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-overlay" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></span>
+  <a href="#hero"         onclick="toggleMenu()">الرئيسية</a>
+  <a href="#about"        onclick="toggleMenu()">من نحن</a>
+  <a href="#services"     onclick="toggleMenu()">خدماتنا</a>
+  <a href="#process"      onclick="toggleMenu()">كيف نعمل</a>
+  <a href="#why-us"       onclick="toggleMenu()">لماذا نحن</a>
+  <a href="pages/blog.html" onclick="toggleMenu()">المدونة</a>
+  <a href="#faq"          onclick="toggleMenu()">الأسئلة الشائعة</a>
+  <a href="#contact"      onclick="toggleMenu()">تواصل معنا</a>
+  <!-- Mobile auth links -->
+  <a href="pages/auth.html" id="mob-login-link" style="display:none;">تسجيل الدخول / إنشاء حساب</a>
+  <a href="#" id="mob-logout-link" onclick="handleLogout();toggleMenu();" style="display:none;color:#c0392b;">تسجيل الخروج</a>
+  <a href="#booking-cta" onclick="guardedOpenModal(event);toggleMenu();" class="btn btn-gold" style="margin-top:20px;">احجز استشارة</a>
+</div>
+
+<!-- ════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+
+  <!-- Architectural SVG -->
+  <svg class="hero-arch" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.18">
+      <!-- Classic courthouse columns left -->
+      <rect x="40" y="180" width="14" height="720"/>
+      <rect x="72" y="180" width="14" height="720"/>
+      <rect x="104" y="180" width="14" height="720"/>
+      <rect x="136" y="180" width="14" height="720"/>
+      <!-- Pediment left -->
+      <polygon points="20,180 95,100 170,180"/>
+      <rect x="20" y="175" width="150" height="10"/>
+      <!-- Capital details -->
+      <ellipse cx="47" cy="185" rx="12" ry="5"/>
+      <ellipse cx="79" cy="185" rx="12" ry="5"/>
+      <ellipse cx="111" cy="185" rx="12" ry="5"/>
+      <ellipse cx="143" cy="185" rx="12" ry="5"/>
+      <!-- Steps -->
+      <rect x="10" y="895" width="170" height="5"/>
+      <rect x="15" y="890" width="160" height="5"/>
+      <rect x="20" y="885" width="150" height="5"/>
+
+      <!-- Columns right -->
+      <rect x="1286" y="180" width="14" height="720"/>
+      <rect x="1318" y="180" width="14" height="720"/>
+      <rect x="1350" y="180" width="14" height="720"/>
+      <rect x="1382" y="180" width="14" height="720"/>
+      <!-- Pediment right -->
+      <polygon points="1270,180 1345,100 1420,180"/>
+      <rect x="1270" y="175" width="150" height="10"/>
+      <!-- Capitals -->
+      <ellipse cx="1293" cy="185" rx="12" ry="5"/>
+      <ellipse cx="1325" cy="185" rx="12" ry="5"/>
+      <ellipse cx="1357" cy="185" rx="12" ry="5"/>
+      <ellipse cx="1389" cy="185" rx="12" ry="5"/>
+      <!-- Steps -->
+      <rect x="1260" y="895" width="170" height="5"/>
+      <rect x="1265" y="890" width="160" height="5"/>
+      <rect x="1270" y="885" width="150" height="5"/>
+
+      <!-- Ground line -->
+      <line x1="0" y1="900" x2="1440" y2="900" stroke-width="1" opacity="0.5"/>
+
+      <!-- Corner ornaments -->
+      <rect x="0" y="0" width="60" height="2" opacity="0.6"/>
+      <rect x="0" y="0" width="2" height="60" opacity="0.6"/>
+      <rect x="1380" y="0" width="60" height="2" opacity="0.6"/>
+      <rect x="1438" y="0" width="2" height="60" opacity="0.6"/>
+      <rect x="0" y="898" width="60" height="2" opacity="0.6"/>
+      <rect x="1380" y="898" width="60" height="2" opacity="0.6"/>
+
+      <!-- Islamic star ornaments center top -->
+      <g transform="translate(720,60)" opacity="0.8">
+        <polygon points="0,-20 5,-7 18,-7 8,2 12,15 0,7 -12,15 -8,2 -18,-7 -5,-7" fill="none" stroke-width="0.8"/>
+        <circle cx="0" cy="0" r="22" fill="none" stroke-width="0.5"/>
+        <circle cx="0" cy="0" r="3" fill="#c9a84c" opacity="0.4"/>
+      </g>
+
+      <!-- Subtle horizontal rule -->
+      <line x1="200" y1="450" x2="1240" y2="450" opacity="0.06"/>
+    </g>
+  </svg>
+
+  <div class="hero-glow"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <!-- Ornament -->
+    <div class="ornament">
+      <div class="ornament-line rev"></div>
+      <div class="ornament-diamond-sm"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-diamond-sm"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="hero-badge">
+      <i class="fa-solid fa-star" style="font-size:0.6rem;"></i>
+      ملتزمون برؤية المملكة 2030
+      <i class="fa-solid fa-star" style="font-size:0.6rem;"></i>
+    </div>
+
+    <h1 class="hero-title">
+      نبني الثقة...
+      <span class="arabic-ornament">ونحمي الحقوق.</span>
+    </h1>
+
+    <p class="hero-subtitle">العدالة تبدأ بخطوة صحيحة</p>
+
+    <p class="hero-desc">
+      شريككم القانوني في تقديم الحلول القانونية المتكاملة للأفراد والشركات ورواد الأعمال،
+      برؤية استراتيجية، وخبرة راسخة، والتزام لا يتغير.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-gold btn-lg" onclick="openModal(event)">
+        <i class="fa-regular fa-calendar-check"></i>
+        احجز استشارة مجانية
+      </button>
+      <a href="#services" class="btn btn-outline-white btn-lg">
+        استكشف خدماتنا
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>تمرير للاستكشاف</span>
+  </div>
+
+  <div class="hero-fade-bottom"></div>
+</section>
+
+<!-- ════════════════════════════════════════
+     STATS
+     ════════════════════════════════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-row stagger">
+      <div class="stat-cell">
+        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+        <span class="stat-num" data-target="15">0</span><span class="stat-unit">+</span>
+        <span class="stat-lbl">سنوات الخبرة القانونية</span>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-icon"><i class="fa-solid fa-gavel"></i></div>
+        <span class="stat-num" data-target="500">0</span><span class="stat-unit">+</span>
+        <span class="stat-lbl">قضية منجزة بنجاح</span>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-icon"><i class="fa-regular fa-handshake"></i></div>
+        <span class="stat-num" data-target="300">0</span><span class="stat-unit">+</span>
+        <span class="stat-lbl">عميل موثوق</span>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <span class="stat-num" data-target="8">0</span><span class="stat-unit"></span>
+        <span class="stat-lbl">تخصصات قانونية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABOUT
+     ════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-layout">
+
+      <!-- Visual -->
+      <div class="about-visual-panel reveal-l">
+        <div class="about-frame">
+          <div class="about-img-box">
+            <img src="assets/images/about-office.png" alt="مكتب المحاماة والاستشارات القانونية - قاعة الاجتماعات التنفيذية" class="about-real-img">
+            <div class="about-img-overlay"></div>
+          </div>
+          <div class="about-years-badge">
+            <span class="num">15</span>
+            <span class="lbl">عاماً<br>خبرة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-content reveal-r">
+        <div class="section-label">من نحن</div>
+        <h2 class="section-title">
+          شراكة قانونية<br>
+          <em>بثقة ومسؤولية</em>
+        </h2>
+
+        <p class="about-tagline">
+          "كل قضية أو استشارة تمثل مسؤولية تتطلب دراسة دقيقة، ورؤية قانونية متعمقة،
+          واستراتيجية واضحة تحقق أفضل النتائج الممكنة."
+        </p>
+
+        <p class="about-text">
+          مكتبنا للمحاماة والاستشارات القانونية شركة قانونية متخصصة تقدّم الحلول القانونية المتكاملة
+          للأفراد والشركات والجهات الحكومية والمستثمرين ورواد الأعمال، من خلال فريق من المحامين
+          والمستشارين ذوي الكفاءة العالية والخبرة العملية في مختلف فروع القانون.
+        </p>
+
+        <p class="about-text">
+          نؤمن بأن العمل القانوني لا يقتصر على التمثيل أمام الجهات القضائية، بل يمتد إلى
+          الاستشارة الاستباقية التي تحمي الحقوق وتقلّل المخاطر وتدعم اتخاذ القرارات السليمة
+          وفق الأنظمة واللوائح السعودية المعمول بها.
+        </p>
+
+        <!-- Values -->
+        <div class="about-vals">
+          <div class="about-val">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>النزاهة</span>
+          </div>
+          <div class="about-val">
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>الاحترافية</span>
+          </div>
+          <div class="about-val">
+            <i class="fa-solid fa-lock"></i>
+            <span>السرية</span>
+          </div>
+          <div class="about-val">
+            <i class="fa-solid fa-bolt"></i>
+            <span>سرعة الإنجاز</span>
+          </div>
+          <div class="about-val">
+            <i class="fa-solid fa-handshake"></i>
+            <span>الالتزام</span>
+          </div>
+          <div class="about-val">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>الاستراتيجية</span>
+          </div>
+        </div>
+
+        <!-- Vision / Mission -->
+        <div class="vm-wrap">
+          <div class="vm-tabs-row" id="vmRow">
+            <button class="vm-tab-btn active" onclick="switchVM('vision',this)">رؤيتنا</button>
+            <button class="vm-tab-btn" onclick="switchVM('mission',this)">رسالتنا</button>
+          </div>
+          <div class="vm-panel active" id="vm-vision">
+            <p class="vm-text">
+              أن نكون الخيار الأول والشريك القانوني الأكثر ثقةً على المستويين المحلي والإقليمي،
+              ونرسّخ مكانتنا كبيت خبرة قانوني رائد يقدّم خدمات متكاملة وفق أعلى المعايير المهنية
+              العالمية، مساهمين في دعم بيئة الأعمال وتعزيز سيادة القانون وتحقيق العدالة.
+            </p>
+          </div>
+          <div class="vm-panel" id="vm-mission">
+            <p class="vm-text">
+              تقديم خدمات قانونية واستشارية متكاملة ترتكز على المعرفة المتخصصة والخبرة العملية
+              والالتزام المهني، بهدف حماية حقوق عملائنا وإدارة مخاطرهم القانونية وتمكينهم من
+              اتخاذ قرارات سليمة تحقق أهدافهم بثقة واستدامة، مع الامتثال الكامل للأنظمة السعودية
+              ورؤية المملكة 2030.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <button class="btn btn-primary" onclick="openModal(event)">
+            <i class="fa-regular fa-calendar-check"></i>
+            احجز استشارة الآن
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICES
+     ════════════════════════════════════════ -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-intro">
+      <div class="reveal">
+        <div class="section-label">خدماتنا القانونية</div>
+        <h2 class="section-title">
+          حلول قانونية<br>
+          <em>متكاملة ومتخصصة</em>
+        </h2>
+        <p class="section-desc">
+          نقدّم طيفاً واسعاً من الخدمات القانونية المصمَّمة لحماية حقوقكم عبر جميع تخصصات القانون
+          السعودي والدولي.
+        </p>
+      </div>
+      <div class="services-all-link reveal">
+        <a href="pages/services.html" class="btn btn-outline-olive">
+          عرض جميع الخدمات <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="services-grid stagger">
+
+      <div class="svc-card" onclick="showServiceDetails('commercial')">
+        <div class="svc-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="svc-title">القضايا التجارية</div>
+        <ul class="svc-list">
+          <li>تأسيس الشركات</li>
+          <li>صياغة العقود التجارية</li>
+          <li>النزاعات التجارية</li>
+          <li>التحكيم التجاري</li>
+          <li>الامتثال القانوني</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('commercial')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('civil')">
+        <div class="svc-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="svc-title">القضايا المدنية</div>
+        <ul class="svc-list">
+          <li>المطالبات المالية</li>
+          <li>التعويضات</li>
+          <li>تنفيذ الأحكام</li>
+          <li>المنازعات المدنية</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('civil')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('family')">
+        <div class="svc-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="svc-title">الأحوال الشخصية</div>
+        <ul class="svc-list">
+          <li>الطلاق والخلع</li>
+          <li>النفقة والحضانة</li>
+          <li>الزيارة والولاية</li>
+          <li>تقسيم التركات</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('family')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('labor')">
+        <div class="svc-icon"><i class="fa-solid fa-id-badge"></i></div>
+        <div class="svc-title">القضايا العمالية</div>
+        <ul class="svc-list">
+          <li>حقوق الموظفين</li>
+          <li>حقوق أصحاب العمل</li>
+          <li>إنهاء العقود</li>
+          <li>التعويضات العمالية</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('labor')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('criminal')">
+        <div class="svc-icon"><i class="fa-solid fa-gavel"></i></div>
+        <div class="svc-title">القضايا الجنائية</div>
+        <ul class="svc-list">
+          <li>الترافع أمام المحاكم</li>
+          <li>الدفاع الجنائي</li>
+          <li>اللوائح القانونية</li>
+          <li>الاستشارات الجنائية</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('criminal')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('estate')">
+        <div class="svc-icon"><i class="fa-solid fa-building"></i></div>
+        <div class="svc-title">العقارات</div>
+        <ul class="svc-list">
+          <li>توثيق العقود</li>
+          <li>نزاعات الملكية</li>
+          <li>البيع والشراء</li>
+          <li>الإيجارات</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('estate')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('ip')">
+        <div class="svc-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <div class="svc-title">الملكية الفكرية</div>
+        <ul class="svc-list">
+          <li>تسجيل العلامات</li>
+          <li>حقوق المؤلف</li>
+          <li>براءات الاختراع</li>
+          <li>حماية الابتكارات</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('ip')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+      <div class="svc-card" onclick="showServiceDetails('consulting')">
+        <div class="svc-icon"><i class="fa-regular fa-comments"></i></div>
+        <div class="svc-title">الاستشارات القانونية</div>
+        <ul class="svc-list">
+          <li>استشارات للأفراد</li>
+          <li>استشارات للشركات</li>
+          <li>مراجعة العقود</li>
+          <li>إعداد اللوائح</li>
+        </ul>
+        <div class="svc-more" onclick="event.stopPropagation(); showServiceDetails('consulting')">التفاصيل <i class="fa-solid fa-arrow-left"></i></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     WHY US
+     ════════════════════════════════════════ -->
+<section id="why-us" class="section">
+  <div class="container">
+    <div class="why-grid">
+
+      <!-- Text -->
+      <div class="reveal-l">
+        <div class="section-label">لماذا نحن</div>
+        <h2 class="section-title">
+          ما يجعلنا<br>
+          <em>الخيار الأمثل</em>
+        </h2>
+
+        <p class="why-quote">
+          "التميز القانوني ليس مجرد معرفة بالقانون،<br>
+          بل هو فن توظيفه لخدمة الحق وتحقيق العدل."
+        </p>
+
+        <div class="why-features stagger">
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>خبرة قانونية متخصصة عميقة</h4>
+              <p>فريق من المحامين ذوي الخبرة في القانون السعودي والدولي لأكثر من 15 عاماً.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>محامون معتمدون من وزارة العدل</h4>
+              <p>جميع محامينا مرخصون ومستوفون لأعلى معايير مهنة المحاماة في المملكة.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>سرية تامة وحماية كاملة للبيانات</h4>
+              <p>نلتزم بأعلى درجات السرية المهنية لحماية جميع معلومات عملائنا.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>استشارات حضورية وعن بُعد</h4>
+              <p>مرونة تامة في التواصل: زيارة، فيديو، أو هاتف — حسب ما يناسبك.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>متابعة مستمرة حتى الحكم النهائي</h4>
+              <p>نرافقك في كل خطوة ونُبلّغك بكل تطور في قضيتك فوراً.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><i class="fa-solid fa-check"></i></div>
+            <div class="why-item-text">
+              <h4>شفافية كاملة في التسعير والخدمة</h4>
+              <p>لا مفاجآت في الأتعاب — عرض واضح ومُفصَّل منذ البداية.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="reveal-r">
+        <div class="why-card-stack">
+          <div class="why-card-deco"></div>
+          <div class="why-card-main">
+            <span class="why-main-num">98%</span>
+            <p class="why-main-lbl">نسبة رضا عملائنا</p>
+
+            <div class="why-mini-cards">
+              <div class="why-mini">
+                <div class="mn">500+</div>
+                <div class="ml">قضية منجزة</div>
+              </div>
+              <div class="why-mini">
+                <div class="mn">300+</div>
+                <div class="ml">عميل موثوق</div>
+              </div>
+              <div class="why-mini">
+                <div class="mn">15+</div>
+                <div class="ml">سنة خبرة</div>
+              </div>
+              <div class="why-mini">
+                <div class="mn">8</div>
+                <div class="ml">تخصصات</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PROCESS
+     ════════════════════════════════════════ -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="process-head text-center reveal">
+      <div class="section-label">كيف نعمل</div>
+      <h2 class="section-title" style="color:var(--white);">
+        أربع خطوات نحو<br>
+        <em style="color:var(--gold-light);">حلٍّ قانوني متكامل</em>
+      </h2>
+      <p class="section-desc" style="margin:0 auto; color:rgba(255,255,255,0.5);">
+        نتبع منهجية منظمة ومدروسة لضمان تقديم أفضل الحلول القانونية لكل عميل
+      </p>
+    </div>
+
+    <div class="process-steps stagger">
+      <div class="proc-step">
+        <div class="proc-num">
+          ١
+          <div class="proc-icon"><i class="fa-solid fa-calendar"></i></div>
+        </div>
+        <h4>حجز الموعد</h4>
+        <p>يقوم العميل بحجز موعد للاستشارة عبر الموقع أو الهاتف أو واتساب</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">
+          ٢
+          <div class="proc-icon"><i class="fa-solid fa-search"></i></div>
+        </div>
+        <h4>دراسة الحالة</h4>
+        <p>يراجع الفريق القانوني جميع المستندات والوقائع بدقة وعناية فائقة</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">
+          ٣
+          <div class="proc-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        </div>
+        <h4>الحل القانوني</h4>
+        <p>توضيح الخيارات المتاحة واختيار الاستراتيجية القانونية الأمثل</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">
+          ٤
+          <div class="proc-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+        </div>
+        <h4>التنفيذ والمتابعة</h4>
+        <p>تمثيل العميل أمام الجهات المختصة والمتابعة حتى الحكم النهائي</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PRICING SECTION
+     ════════════════════════════════════════ -->
+<section id="pricing" class="section" style="background:var(--ivory-dark);">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">باقات الاستشارات</div>
+      <h2 class="section-title">أسعار <em>الاستشارات القانونية</em></h2>
+      <p class="section-desc">
+        شفافية كاملة في تعاملاتنا. اختر نوع الاستشارة المناسبة لاحتياجاتك لحجز موعدك فوراً.
+      </p>
+    </div>
+
+    <div class="pricing-grid stagger" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;margin-top:40px;">
+      
+      <!-- Card 1: WhatsApp -->
+      <div class="pricing-card" style="background:var(--white);border:1px solid var(--border-soft);border-radius:var(--r);padding:32px 24px;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--ease);display:flex;flex-direction:column;align-items:center;">
+        <div style="width:60px;height:60px;background:rgba(37,211,102,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#25D366;margin-bottom:20px;">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;color:var(--ink-dark);margin-bottom:8px;">استشارة فورية عبر واتساب</h3>
+        <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:20px;line-height:1.7;">رد سريع ومباشر خلال وقت قصير لمختلف الاستفسارات</p>
+        <div style="margin-top:auto;margin-bottom:24px;">
+          <span style="font-family:var(--font-heading);font-size:2.2rem;font-weight:700;color:var(--olive-mid);">150</span>
+          <span style="font-size:0.9rem;color:var(--text-light);font-weight:600;margin-right:4px;">ريال سعودي</span>
+        </div>
+        <button class="btn btn-outline-olive" style="width:100%;" onclick="openPricingModal(1)">احجز الآن</button>
+      </div>
+
+      <!-- Card 2: Phone (Popular) -->
+      <div class="pricing-card featured" style="background:var(--white);border:2px solid var(--gold);border-radius:var(--r);padding:36px 24px;text-align:center;box-shadow:var(--shadow-md);transition:all var(--ease);display:flex;flex-direction:column;align-items:center;position:relative;">
+        <span style="position:absolute;top:-13px;background:var(--gold);color:var(--white);padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;font-family:var(--font-ui);left:50%;transform:translateX(-50%);">الأكثر طلباً</span>
+        <div style="width:60px;height:60px;background:rgba(201,168,76,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin-bottom:20px;">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;color:var(--ink-dark);margin-bottom:8px;">استشارة هاتفية</h3>
+        <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:20px;line-height:1.7;">اتصال مباشر لمناقشة قضيتك بالتفصيل (حتى 30 دقيقة)</p>
+        <div style="margin-top:auto;margin-bottom:24px;">
+          <span style="font-family:var(--font-heading);font-size:2.2rem;font-weight:700;color:var(--olive-mid);">250</span>
+          <span style="font-size:0.9rem;color:var(--text-light);font-weight:600;margin-right:4px;">ريال سعودي</span>
+        </div>
+        <button class="btn btn-gold" style="width:100%;" onclick="openPricingModal(2)">احجز الآن</button>
+      </div>
+
+      <!-- Card 3: Video -->
+      <div class="pricing-card" style="background:var(--white);border:1px solid var(--border-soft);border-radius:var(--r);padding:32px 24px;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--ease);display:flex;flex-direction:column;align-items:center;">
+        <div style="width:60px;height:60px;background:rgba(37,96,64,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--olive-mid);margin-bottom:20px;">
+          <i class="fa-solid fa-video"></i>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;color:var(--ink-dark);margin-bottom:8px;">اجتماع مرئي (فيديو)</h3>
+        <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:20px;line-height:1.7;">جلسة استشارية مرئية عبر زووم / تيمز (حتى 60 دقيقة)</p>
+        <div style="margin-top:auto;margin-bottom:24px;">
+          <span style="font-family:var(--font-heading);font-size:2.2rem;font-weight:700;color:var(--olive-mid);">400</span>
+          <span style="font-size:0.9rem;color:var(--text-light);font-weight:600;margin-right:4px;">ريال سعودي</span>
+        </div>
+        <button class="btn btn-outline-olive" style="width:100%;" onclick="openPricingModal(3)">احجز الآن</button>
+      </div>
+
+    </div>
+
+    <!-- Notice Box -->
+    <div class="pricing-notice reveal" style="margin-top:36px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:var(--r-sm);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">
+        <i class="fa-solid fa-info"></i>
+      </div>
+      <p style="color:var(--ink-dark);font-family:var(--font-ui);font-size:0.92rem;line-height:1.7;margin:0;">
+        <strong>ملاحظة هامة:</strong> في حال تم الاتفاق على توكيلنا لتولي القضية بعد تقديم الاستشارة، يُخصم كامل مبلغ الاستشارة المدفوع من أتعاب القضية النهائية.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PARTNERS
+     ════════════════════════════════════════ -->
+<section id="partners">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:28px;">
+      <div class="section-label">شركاؤنا</div>
+    </div>
+    <div class="partners-row">
+      <div class="partner-chip">شركة الأمانة للتطوير</div>
+      <div class="partner-chip">مجموعة الخليج التجارية</div>
+      <div class="partner-chip">بنك الاستثمار العربي</div>
+      <div class="partner-chip">مؤسسة رواد الأعمال</div>
+      <div class="partner-chip">شركة الرياض للعقارات</div>
+      <div class="partner-chip">مجموعة المستقبل</div>
+      <div class="partner-chip">شركة التقنية والابتكار</div>
+      <div class="partner-chip">هيئة الاستثمار</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     TESTIMONIALS
+     ════════════════════════════════════════ -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">آراء العملاء</div>
+      <h2 class="section-title">ماذا يقول <em>عملاؤنا؟</em></h2>
+      <p class="section-desc">ثقة عملائنا هي أثمن ما نمتلك وأكبر شهادة على جودة خدمتنا</p>
+    </div>
+
+    <div class="testimonials-grid stagger">
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          تعامل احترافي رفيع المستوى وسرعة ملحوظة في إنجاز القضية. أشعر أنهم يعاملونني كشريك
+          لا كعميل. سأنصح بهم لكل من يبحث عن محامٍ موثوق ومتمكن.
+        </p>
+        <div class="testi-author">
+          <div class="testi-av">م</div>
+          <div>
+            <div class="testi-name">محمد العمري</div>
+            <div class="testi-role">رجل أعمال</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          أفضل مكتب تعاملت معه من ناحية المتابعة والشفافية. أبلغوني بكل تطور في قضيتي فوراً،
+          والنتيجة كانت مُرضية جداً بفضل استراتيجيتهم المحكمة.
+        </p>
+        <div class="testi-author">
+          <div class="testi-av">س</div>
+          <div>
+            <div class="testi-name">سارة الحربي</div>
+            <div class="testi-role">مديرة شركة</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          استشارة قانونية دقيقة وواضحة ساعدتني في اتخاذ القرار الصحيح. الخبرة العالية والأمانة
+          في التعامل جعلاني أثق بهم بشكل كامل في كل شؤوني القانونية.
+        </p>
+        <div class="testi-author">
+          <div class="testi-av">ع</div>
+          <div>
+            <div class="testi-name">عبدالله الراشد</div>
+            <div class="testi-role">مستثمر</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FAQ
+     ════════════════════════════════════════ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="faq-layout">
+
+      <!-- Intro -->
+      <div class="faq-intro-col reveal-l">
+        <div class="faq-decor">
+          <img src="assets/images/logo-dark.png" alt="شعار زياد العياضي" class="faq-decor-img">
+        </div>
+        <div class="section-label">الأسئلة الشائعة</div>
+        <h2 class="section-title">
+          لديك<br>
+          <em>استفسار؟</em>
+        </h2>
+        <p class="faq-intro-text">
+          إليك أبرز الأسئلة التي يطرحها عملاؤنا. وإن لم تجد إجابتك، تواصل معنا مباشرةً وسنرد
+          في أقرب وقت.
+        </p>
+        <button class="btn btn-primary" onclick="openModal(event)">
+          <i class="fa-solid fa-phone-volume"></i>
+          تحدث معنا الآن
+        </button>
+      </div>
+
+      <!-- Questions -->
+      <div class="faq-list stagger">
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            كم تستغرق الاستشارة القانونية؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              تتراوح مدة الاستشارة بين 30 و60 دقيقة، وقد تمتد حسب تعقيد القضية.
+              نحرص على تخصيص الوقت الكافي لكل عميل لضمان الاستيعاب الكامل لجميع جوانب قضيته
+              دون تسرع.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            هل تتوفر استشارات قانونية عن بُعد؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              نعم، نوفر استشارات عبر الهاتف ومنصات الاجتماع الإلكتروني (زووم، تيمز، واتساب)،
+              مما يتيح لعملائنا في جميع مناطق المملكة وخارجها الحصول على خدماتنا بيسر وسهولة.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            هل معلوماتي محفوظة بسرية تامة؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              بالتأكيد. جميع البيانات والمعلومات التي يشاركها العميل محفوظة بأعلى درجات
+              السرية المهنية وفق أخلاقيات مهنة المحاماة والأنظمة السعودية. لا تُشارَك أي
+              معلومة مع أي طرف ثالث دون موافقة صريحة من العميل.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            كيف يمكنني متابعة قضيتي إلكترونياً؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              نوفر بوابة إلكترونية خاصة بالعملاء تمكّنهم من متابعة قضاياهم، ورفع المستندات،
+              والتواصل مع محاميهم المسؤول في أي وقت ومن أي مكان. يمكنك <a href="pages/portal.html" style="color:var(--olive-dark);">تسجيل الدخول هنا</a>.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            كيف تُحدَّد أتعاب المحاماة؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              تُحدَّد الأتعاب بناءً على طبيعة القضية ومدى تعقيدها والخدمات المطلوبة.
+              نلتزم بالشفافية التامة ونقدم عرضاً واضحاً ومُفصَّلاً قبل البدء في أي عمل،
+              مع إتاحة أنظمة دفع مرنة تناسب مختلف العملاء.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            ما هي التخصصات القانونية التي تغطونها؟
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              نغطي 8 تخصصات رئيسية: التجارية، المدنية، الأحوال الشخصية، العمالية، الجنائية،
+              العقارات، الملكية الفكرية، والاستشارات القانونية الشاملة. كما نقدم خدمات تأسيس
+              الشركات والامتثال وتسوية المنازعات والتحكيم.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BLOG
+     ════════════════════════════════════════ -->
+<section id="blog" class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">المدونة القانونية</div>
+      <h2 class="section-title">أحدث <em>المقالات والتحديثات</em></h2>
+      <p class="section-desc">
+        نشاركم أبرز التحديثات القانونية والتشريعية والنصائح القانونية لحماية حقوقكم
+      </p>
+    </div>
+
+    <div class="blog-grid stagger" id="home-blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="assets/images/blog-commercial.png" alt="أبرز التعديلات على نظام الشركات السعودي وأثرها على المستثمرين" class="blog-real-img">
+          <span class="blog-cat-badge">قانون تجاري</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> 15 يونيو 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 5 د</span>
+          </div>
+          <h3 class="blog-title">أبرز التعديلات على نظام الشركات السعودي وأثرها على المستثمرين</h3>
+          <p class="blog-excerpt">
+            استعراض شامل للتعديلات الأخيرة على نظام الشركات في المملكة وكيفية التكيف معها لحماية
+            مصالح الشركات والمستثمرين...
+          </p>
+          <a href="pages/blog-1.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="assets/images/blog-labor.png" alt="حقوق الموظف عند إنهاء عقد العمل" class="blog-real-img">
+          <span class="blog-cat-badge">قانون عمالي</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> 8 يونيو 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 7 د</span>
+          </div>
+          <h3 class="blog-title">حقوق الموظف عند إنهاء عقد العمل: دليل شامل وفق نظام العمل</h3>
+          <p class="blog-excerpt">
+            تعرف على كامل حقوقك كموظف عند إنهاء العقد سواء بإرادة صاحب العمل أو الاستقالة،
+            وكيفية المطالبة بها قانونياً...
+          </p>
+          <a href="pages/blog-2.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="assets/images/blog-estate.png" alt="نصائح قانونية ضرورية قبل توقيع عقد البيع العقاري" class="blog-real-img">
+          <span class="blog-cat-badge">عقارات</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> 1 يونيو 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 4 د</span>
+          </div>
+          <h3 class="blog-title">نصائح قانونية ضرورية قبل توقيع عقد البيع العقاري في السعودية</h3>
+          <p class="blog-excerpt">
+            قبل توقيع أي عقد عقاري، تعرّف على البنود الأساسية والمخاطر القانونية التي يجب
+            تجنبها لحماية استثمارك العقاري...
+          </p>
+          <a href="pages/blog-3.html" class="blog-more">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top:48px;">
+      <a href="pages/blog.html" class="btn btn-outline-olive">
+        عرض جميع المقالات <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTACT
+     ════════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">تواصل معنا</div>
+      <h2 class="section-title">نحن هنا <em>لخدمتكم</em></h2>
+      <p class="section-desc">لا تترددوا في التواصل معنا. فريقنا القانوني مستعد للإجابة على استفساراتكم.</p>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- Info -->
+      <div class="contact-info-col stagger">
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <h4>العنوان</h4>
+            <p>الرياض، المملكة العربية السعودية</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <h4>الهاتف</h4>
+            <a href="tel:+966XXXXXXXXX">+966 XX XXX XXXX</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div>
+            <h4>واتساب</h4>
+            <a href="https://wa.me/966XXXXXXXXX" target="_blank">+966 XX XXX XXXX</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <h4>البريد الإلكتروني</h4>
+            <a href="mailto:info@lawfirm.com">info@lawfirm.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <h4>ساعات العمل</h4>
+            <p>الأحد – الخميس: 9:00 ص – 6:00 م</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-panel reveal-r">
+        <h3 class="form-panel-title">أرسل استفساركم</h3>
+        <p class="form-panel-sub">سنرد عليكم في أقرب وقت ممكن</p>
+
+        <form id="cForm" onsubmit="handleContact(event)">
+          <div class="form-row">
+            <div class="fg">
+              <label>الاسم الكامل *</label>
+              <input type="text" placeholder="اسمك الكامل" required>
+            </div>
+            <div class="fg">
+              <label>رقم الجوال *</label>
+              <input type="tel" placeholder="+966 5X XXX XXXX" required>
+            </div>
+          </div>
+          <div class="fg">
+            <label>البريد الإلكتروني</label>
+            <input type="email" placeholder="email@example.com">
+          </div>
+          <div class="fg">
+            <label>نوع الخدمة</label>
+            <select>
+              <option value="">— اختر نوع الخدمة —</option>
+              <option>القضايا التجارية</option>
+              <option>القضايا المدنية</option>
+              <option>الأحوال الشخصية</option>
+              <option>القضايا العمالية</option>
+              <option>القضايا الجنائية</option>
+              <option>العقارات</option>
+              <option>الملكية الفكرية</option>
+              <option>استشارة قانونية</option>
+              <option>أخرى</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>رسالتك *</label>
+            <textarea placeholder="اكتب رسالتك أو وصفاً موجزاً لقضيتك..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            <i class="fa-solid fa-paper-plane"></i>
+            إرسال الرسالة
+          </button>
+          <div id="cSuccess" style="display:none;text-align:center;padding:16px;color:var(--olive-dark);font-family:var(--font-ui);font-weight:600;animation:fadeInUp 0.4s ease;">
+            <i class="fa-solid fa-circle-check" style="font-size:1.4rem;margin-bottom:6px;display:block;"></i>
+            شكراً! تم استلام رسالتكم وسنتواصل قريباً.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BOOKING CTA
+     ════════════════════════════════════════ -->
+<section id="booking-cta" class="section">
+  <div class="container">
+    <div class="booking-cta-inner">
+      <div class="cta-text reveal-l">
+        <div class="section-label">احجز الآن</div>
+        <h2 class="section-title">خطوتك الأولى<br><em style="color:var(--gold-light);">نحو الحل</em></h2>
+        <p>
+          سواء كنت تواجه قضية أو تحتاج استشارة أو تريد مراجعة عقد — نحن هنا.
+          احجز موعدك الآن واحصل على استشارتك بكل سهولة ويسر.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+          <button class="btn btn-gold btn-lg" onclick="openModal(event)">
+            <i class="fa-regular fa-calendar-check"></i>
+            احجز موعداً الآن
+          </button>
+          <a href="https://wa.me/966XXXXXXXXX" target="_blank" class="btn btn-outline-white btn-lg">
+            <i class="fa-brands fa-whatsapp"></i>
+            واتساب مباشر
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal-r">
+        <div class="cta-form-card">
+          <p style="font-family:var(--font-ui);color:rgba(255,255,255,0.55);font-size:0.88rem;margin-bottom:16px;">نوع الاستشارة المطلوبة:</p>
+          <div class="cta-type-grid">
+            <div class="cta-type sel" id="ct1" onclick="selType(1)">
+              <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
+              <span>عبر الواتساب</span>
+              <small>150 ريال سعودي</small>
+            </div>
+            <div class="cta-type" id="ct2" onclick="selType(2)">
+              <i class="fa-solid fa-phone"></i>
+              <span>استشارة هاتفية</span>
+              <small>250 ريال سعودي</small>
+            </div>
+            <div class="cta-type" id="ct3" onclick="selType(3)">
+              <i class="fa-solid fa-video"></i>
+              <span>اجتماع مرئي</span>
+              <small>400 ريال سعودي</small>
+            </div>
+          </div>
+          <button class="btn btn-gold" style="width:100%;" onclick="openModal(event)">
+            <i class="fa-regular fa-calendar-plus"></i>
+            تأكيد الحجز
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="ft-brand">
+        <div class="ft-logo">
+          <img src="assets/images/logo-light.png" alt="زياد العياضي للاستشارات القانونية والمحاماة" class="ft-logo-img">
+        </div>
+        <p class="ft-desc">
+          شريككم القانوني الموثوق في تقديم الحلول القانونية المتكاملة للأفراد والشركات والجهات
+          الحكومية، وفق أعلى معايير المهنية والنزاهة والامتثال للأنظمة السعودية.
+        </p>
+        <div class="ft-social">
+          <a href="#" title="تويتر"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" title="لينكدإن"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" title="انستغرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Links 1 -->
+      <div class="ft-col">
+        <h5>روابط سريعة</h5>
+        <ul>
+          <li><a href="#hero">الرئيسية</a></li>
+          <li><a href="#about">من نحن</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#process">كيف نعمل</a></li>
+          <li><a href="#testimonials">آراء العملاء</a></li>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><a href="pages/blog.html">المدونة</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <!-- Links 2 -->
+      <div class="ft-col">
+        <h5>خدماتنا</h5>
+        <ul>
+          <li><a href="#">القضايا التجارية</a></li>
+          <li><a href="#">القضايا المدنية</a></li>
+          <li><a href="#">الأحوال الشخصية</a></li>
+          <li><a href="#">القضايا العمالية</a></li>
+          <li><a href="#">القضايا الجنائية</a></li>
+          <li><a href="#">العقارات</a></li>
+          <li><a href="#">الملكية الفكرية</a></li>
+          <li><a href="#">الاستشارات</a></li>
+        </ul>
+      </div>
+
+      <!-- Links 3 -->
+      <div class="ft-col">
+        <h5>بوابة العملاء</h5>
+        <ul>
+          <li><a href="pages/portal.html">تسجيل الدخول</a></li>
+          <li><a href="#" onclick="openModal(event)">حجز استشارة</a></li>
+          <li><a href="pages/portal.html">رفع مستندات</a></li>
+          <li><a href="pages/portal.html">متابعة القضايا</a></li>
+          <li><a href="#">طلب صياغة عقد</a></li>
+          <li><a href="#">طلب مراجعة عقد</a></li>
+          <li><a href="#">طلب عرض سعر</a></li>
+          <li><a href="#">الدفع الإلكتروني</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="ft-copy">
+        © 2026 مكتب المحاماة والاستشارات القانونية — جميع الحقوق محفوظة <span>⚖</span>
+      </p>
+      <div class="ft-legal">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط والأحكام</a>
+        <a href="#">إخلاء المسؤولية</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════
+     SERVICE DETAILS MODAL
+     ════════════════════════════════════════ -->
+<div class="overlay" id="serviceModal">
+  <div class="modal-box service-modal-box">
+    <button class="modal-close-btn" onclick="closeServiceModal()"><i class="fa-solid fa-xmark"></i></button>
+
+    <div class="svc-modal-header">
+      <div class="svc-modal-icon-wrap" id="svcModalIcon">
+        <i class="fa-solid fa-briefcase"></i>
+      </div>
+      <div>
+        <h2 class="modal-title" id="svcModalTitle">تفاصيل الخدمة</h2>
+        <span class="section-label" style="font-size: 0.72rem; margin-top: 4px;">خدمة قانونية متخصصة</span>
+      </div>
+    </div>
+
+    <div class="svc-modal-body">
+      <p class="svc-modal-desc" id="svcModalDesc">وصف الخدمة...</p>
+      
+      <h4 class="svc-modal-subheading">العناصر والمجالات المشمولة:</h4>
+      <ul class="svc-modal-list" id="svcModalList">
+        <!-- populated dynamically -->
+      </ul>
+
+      <div class="svc-modal-info-card">
+        <div class="sm-info-item">
+          <i class="fa-regular fa-clock"></i>
+          <div>
+            <strong>المدة المتوقعة للدراسة</strong>
+            <span>24 - 48 ساعة عمل</span>
+          </div>
+        </div>
+        <div class="sm-info-item">
+          <i class="fa-regular fa-file-lines"></i>
+          <div>
+            <strong>المستندات المطلوبة</strong>
+            <span>الوثائق ذات العلاقة، الهوية/السجل التجاري</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-modal-footer">
+      <button class="btn btn-primary" onclick="bookThisService()" style="width: 100%;">
+        <i class="fa-regular fa-calendar-check"></i>
+        احجز استشارة لهذه الخدمة
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     BOOKING MODAL
+     ════════════════════════════════════════ -->
+<div class="overlay" id="bModal">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+
+    <h2 class="modal-title">
+      <i class="fa-regular fa-calendar-check" style="color:var(--olive-mid);margin-left:8px;"></i>
+      حجز موعد استشارة
+    </h2>
+    <p class="modal-sub">أكمل البيانات أدناه وسيتواصل معك فريقنا لتأكيد الموعد</p>
+
+    <div class="modal-steps-bar">
+      <div class="ms-step active" id="ms1">البيانات</div>
+      <div class="ms-step" id="ms2">التفاصيل</div>
+      <div class="ms-step" id="ms3">الدفع</div>
+      <div class="ms-step" id="ms4">التأكيد</div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="mStep1">
+      <div class="form-row">
+        <div class="fg">
+          <label>الاسم الكامل *</label>
+          <input type="text" id="bN" placeholder="اسمك الكامل">
+        </div>
+        <div class="fg">
+          <label>رقم الجوال *</label>
+          <input type="tel" id="bP" placeholder="+966 5X XXX XXXX">
+        </div>
+      </div>
+      <div class="fg">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="bE" placeholder="email@example.com">
+      </div>
+      <div class="fg" style="margin-bottom:24px;">
+        <label>وصف مختصر للطلب</label>
+        <textarea id="bD" placeholder="اذكر باختصار ما تحتاجه..." style="min-height:85px;"></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;" onclick="if(validateStep1()) goStep(2)">
+        التالي <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="mStep2" style="display:none;">
+      <p style="font-family:var(--font-ui);font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">نوع الاستشارة:</p>
+      <div class="cta-type-grid" style="margin-bottom:16px;background:var(--ivory);padding:12px;border-radius:var(--r-sm);">
+        <div class="cta-type sel" id="mb1" onclick="selMType(1)" style="border-color:var(--border-soft);display:flex;flex-direction:column;align-items:center;padding:10px 4px;">
+          <i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:1.3rem;"></i>
+          <span style="color:var(--ink-dark);font-size:0.75rem;margin-top:4px;">واتساب (150)</span>
+        </div>
+        <div class="cta-type" id="mb2" onclick="selMType(2)" style="border-color:var(--border-soft);display:flex;flex-direction:column;align-items:center;padding:10px 4px;">
+          <i class="fa-solid fa-phone" style="color:var(--olive-mid);font-size:1.15rem;"></i>
+          <span style="color:var(--ink-dark);font-size:0.75rem;margin-top:4px;">هاتفية (250)</span>
+        </div>
+        <div class="cta-type" id="mb3" onclick="selMType(3)" style="border-color:var(--border-soft);display:flex;flex-direction:column;align-items:center;padding:10px 4px;">
+          <i class="fa-solid fa-video" style="color:var(--olive-mid);font-size:1.15rem;"></i>
+          <span style="color:var(--ink-dark);font-size:0.75rem;margin-top:4px;">مرئية (400)</span>
+        </div>
+      </div>
+      <div class="fg">
+        <label>مجال الخدمة</label>
+        <select id="bS">
+          <option>— اختر المجال —</option>
+          <option>القضايا التجارية</option>
+          <option>القضايا المدنية</option>
+          <option>الأحوال الشخصية</option>
+          <option>القضايا العمالية</option>
+          <option>القضايا الجنائية</option>
+          <option>العقارات</option>
+          <option>الملكية الفكرية</option>
+          <option>استشارة قانونية عامة</option>
+        </select>
+      </div>
+      <div class="fg" style="margin-bottom:24px;">
+        <label>الوقت المفضل للتواصل</label>
+        <select id="bT">
+          <option>الصباح (9 ص - 12 م)</option>
+          <option>الظهيرة (12 م - 3 م)</option>
+          <option>العصر (3 م - 6 م)</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-outline-olive" style="flex:1;" onclick="goStep(1)">
+          <i class="fa-solid fa-arrow-right"></i> السابق
+        </button>
+        <button class="btn btn-primary" style="flex:2;" onclick="if(validateStep2()) { updatePaymentDetails(); goStep(3); }">
+          التالي <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Payment Checkout -->
+    <div id="mStep3" style="display:none;">
+      <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:var(--r-sm);padding:14px;margin-bottom:20px;text-align:center;">
+        <span style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-light);display:block;margin-bottom:4px;">المبلغ المستحق للدفع:</span>
+        <span id="payment-amount" style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700;color:var(--olive-mid);">250</span>
+        <span style="font-size:0.9rem;color:var(--ink-dark);font-weight:600;margin-right:2px;">ريال سعودي</span>
+      </div>
+
+      <p style="font-family:var(--font-ui);font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">اختر طريقة الدفع:</p>
+      
+      <!-- Payment Tabs -->
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;margin-bottom:20px;">
+        <div class="cta-type sel" id="pm1" onclick="selPaymentMethod('bank')" style="border-color:var(--gold);padding:10px 4px;display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+          <span style="font-weight:800;color:var(--olive-mid);font-family:var(--font-ui);font-size:0.85rem;display:inline-flex;align-items:center;gap:4px;"><i class="fa-solid fa-building-columns"></i> تحويل بنكي</span>
+        </div>
+        <div class="cta-type" id="pm2" style="border-color:var(--border-soft);padding:10px 4px;display:flex;flex-direction:column;align-items:center;cursor:not-allowed;opacity:0.6;background:#f5f5f5;position:relative;">
+          <span style="font-weight:800;color:var(--text-muted);font-family:sans-serif;font-size:0.9rem;">مدى / Visa</span>
+          <span style="position:absolute;top:-8px;right:2px;background:var(--gold);color:#fff;font-size:0.58rem;padding:1px 5px;border-radius:10px;font-weight:700;">قريباً</span>
+        </div>
+        <div class="cta-type" id="pm3" style="border-color:var(--border-soft);padding:10px 4px;display:flex;flex-direction:column;align-items:center;cursor:not-allowed;opacity:0.6;background:#f5f5f5;position:relative;">
+          <span style="font-weight:800;color:var(--text-muted);font-family:sans-serif;font-size:0.9rem;display:inline-flex;align-items:center;gap:2px;"><i class="fa-brands fa-apple"></i> Pay</span>
+          <span style="position:absolute;top:-8px;right:2px;background:var(--gold);color:#fff;font-size:0.58rem;padding:1px 5px;border-radius:10px;font-weight:700;">قريباً</span>
+        </div>
+      </div>
+
+      <!-- Bank Transfer Details Form -->
+      <div id="bank-fields" style="display:block;animation:fadeInUp 0.3s ease;">
+        
+        <!-- Al Rajhi Bank Card -->
+        <div style="background:linear-gradient(135deg, #0b2545, #134074);border-radius:var(--r-sm);padding:18px;color:#fff;font-family:var(--font-ui);box-shadow:var(--shadow-sm);margin-bottom:20px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-10px;right:-10px;width:100px;height:100px;background:rgba(255,255,255,0.03);border-radius:50%;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-size:0.85rem;font-weight:700;color:#8da9c4;letter-spacing:0.5px;">حساب التحويل - مصرف الراجحي</span>
+            <i class="fa-solid fa-building-columns" style="font-size:1.3rem;color:#eef4f8;"></i>
+          </div>
+          <div style="margin-bottom:10px;">
+            <span style="font-size:0.75rem;color:#8da9c4;display:block;margin-bottom:2px;">اسم صاحب الحساب</span>
+            <strong style="font-size:1.05rem;color:#fff;font-family:var(--font-heading);">زياد عبدالرحمن اسمير الحربي</strong>
+          </div>
+          <div style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);padding:6px 10px;border-radius:6px;">
+            <div>
+              <span style="font-size:0.7rem;color:#8da9c4;display:block;">رقم الحساب</span>
+              <strong id="bank-acc-num" style="font-size:0.92rem;font-family:monospace;letter-spacing:0.5px;">077030010006082917055</strong>
+            </div>
+            <button onclick="copyToClipboard('077030010006082917055', this)" class="btn btn-outline-white" style="padding:4px 8px;font-size:0.72rem;background:none;border-color:rgba(255,255,255,0.3);color:#fff;border-radius:4px;"><i class="fa-regular fa-copy"></i> نسخ</button>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.05);padding:6px 10px;border-radius:6px;margin-bottom:10px;">
+            <div>
+              <span style="font-size:0.7rem;color:#8da9c4;display:block;">رقم الآيبان IBAN</span>
+              <strong id="bank-iban" style="font-size:0.85rem;font-family:monospace;letter-spacing:0.5px;">SA03 8000 0858 6080 1291 7055</strong>
+            </div>
+            <button onclick="copyToClipboard('SA0380000858608012917055', this)" class="btn btn-outline-white" style="padding:4px 8px;font-size:0.72rem;background:none;border-color:rgba(255,255,255,0.3);color:#fff;border-radius:4px;"><i class="fa-regular fa-copy"></i> نسخ</button>
+          </div>
+          <div style="font-size:0.75rem;color:#8da9c4;">
+            <span>كود سويفت Swift: <strong>RJHISARI</strong></span>
+          </div>
+        </div>
+
+        <div class="fg" style="margin-bottom:14px;">
+          <label>اسم المحوِّل الثلاثي *</label>
+          <input type="text" id="senderName" placeholder="الاسم الكامل لصاحب الحساب المحوَّل منه" style="padding:10px 12px;" required>
+        </div>
+        <div class="fg" style="margin-bottom:14px;">
+          <label>إرفاق إيصال التحويل (صورة الإيصال) *</label>
+          <div style="border:1.5px dashed var(--border-soft);border-radius:var(--r-sm);padding:18px;text-align:center;background:var(--ivory);position:relative;cursor:pointer;transition:border-color 0.2s;" id="receipt-upload-area" onclick="document.getElementById('receiptFile').click()">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem;color:var(--text-light);margin-bottom:8px;display:block;"></i>
+            <span style="font-family:var(--font-ui);font-size:0.82rem;color:var(--text-main);display:block;" id="upload-status-text">اضغط هنا لإرفاق صورة التحويل أو الإيصال</span>
+            <span style="font-size:0.7rem;color:var(--text-muted);">يدعم PNG, JPG, JPEG (بحد أقصى 2MB)</span>
+            <input type="file" id="receiptFile" accept="image/*" style="display:none;" onchange="handleReceiptFileSelect(this)">
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:24px;">
+        <button class="btn btn-outline-olive" style="flex:1;" onclick="goStep(2)">
+          <i class="fa-solid fa-arrow-right"></i> السابق
+        </button>
+        <button class="btn btn-primary" style="flex:2;" id="paySubmitBtn" onclick="processBankPayment()">
+          <i class="fa-solid fa-check"></i>
+          تأكيد الحجز وإرسال الإيصال
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirm -->
+    <div id="mStep4" style="display:none;text-align:center;padding:16px 0;">
+      <div style="width:76px;height:76px;background:var(--olive-dark);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:2rem;color:var(--gold-light);margin-bottom:20px;box-shadow:var(--shadow-md);">✓</div>
+      <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ink-dark);margin-bottom:10px;">تم إرسال طلب الحجز بنجاح!</h3>
+      <p style="color:var(--text-body);font-size:0.95rem;line-height:1.9;margin-bottom:24px;">
+        تم استلام طلب الاستشارة وإثبات الدفع بنجاح. سيتواصل معكم أحد محامينا لتأكيد الموعد فور مراجعة التحويل البنكي.
+      </p>
+      <a href="https://wa.me/966XXXXXXXXX" target="_blank" class="btn" style="background:#25D366;color:#fff;box-shadow:0 6px 20px rgba(37,211,102,0.3);">
+        <i class="fa-brands fa-whatsapp"></i>
+        تابع عبر واتساب
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/966XXXXXXXXX" class="wa-float" target="_blank" title="تواصل عبر واتساب">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Scroll top -->
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="للأعلى">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+<script>
+/* ── Auth UI Initialization ── */
+function initAuthUI() {
+  const user = getCurrentUser();
+  const loginBtn    = document.getElementById('nav-login-btn');
+  const userMenu    = document.getElementById('user-nav-menu');
+  const navName     = document.getElementById('nav-user-name');
+  const undName     = document.getElementById('und-name');
+  const undEmail    = document.getElementById('und-email');
+  const mobLogin    = document.getElementById('mob-login-link');
+  const mobLogout   = document.getElementById('mob-logout-link');
+
+  if (user) {
+    if (loginBtn)  loginBtn.style.display  = 'none';
+    if (userMenu)  userMenu.style.display  = 'flex';
+    if (navName)   navName.textContent     = user.name.split(' ')[0];
+    if (undName)   undName.textContent     = user.name;
+    if (undEmail)  undEmail.textContent    = user.email;
+    if (mobLogin)  mobLogin.style.display  = 'none';
+    if (mobLogout) mobLogout.style.display = 'block';
+  } else {
+    if (loginBtn)  loginBtn.style.display  = 'flex';
+    if (userMenu)  userMenu.style.display  = 'none';
+    if (mobLogin)  mobLogin.style.display  = 'block';
+    if (mobLogout) mobLogout.style.display = 'none';
+  }
+}
+
+// Initialize on page load
+initAuthUI();
+
+// Also listen for changes from Supabase asynchronously
+window.addEventListener('auth-state-changed', initAuthUI);
+
+/* ── Toggle user dropdown ── */
+function toggleUserMenu() {
+  document.getElementById('user-nav-dropdown').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('user-nav-menu');
+  if (menu && !menu.contains(e.target)) {
+    const dd = document.getElementById('user-nav-dropdown');
+    if (dd) dd.classList.remove('open');
+  }
+});
+
+/* ── Logout ── */
+async function handleLogout() {
+  localStorage.removeItem('lf_session'); // clear immediately so UI updates
+  await authLogout();                    // sign out from Supabase
+  window.location.reload();
+}
+
+/* ── Guarded booking opener ── */
+function guardedOpenModal(e) {
+  if (e) e.preventDefault();
+  if (!isLoggedIn()) {
+    window.location.href = 'pages/auth.html?return=' + encodeURIComponent(window.location.href);
+    return;
+  }
+  // Pre-fill user data
+  const u = getCurrentUser();
+  if (u) {
+    const bN = document.getElementById('bN');
+    const bP = document.getElementById('bP');
+    const bE = document.getElementById('bE');
+    if (bN && !bN.value) bN.value = u.name;
+    if (bP && !bP.value) bP.value = u.phone;
+    if (bE && !bE.value) bE.value = u.email;
+  }
+  openModal();
+}
+window.guardedOpenModal = guardedOpenModal;
+
+/* ── Open modal from pricing table ── */
+function openPricingModal(type) {
+  if (typeof selMType === 'function') {
+    selMType(type);
+  }
+  guardedOpenModal();
+}
+window.openPricingModal = openPricingModal;
+</script>
+
+<!-- Apple Pay Simulator Sheet -->
+<div id="applePaySheet" style="position:fixed;bottom:0;left:0;right:0;background:#1c1c1e;border-top-left-radius:20px;border-top-right-radius:20px;box-shadow:0 -10px 40px rgba(0,0,0,0.5);transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);z-index:10100;font-family:-apple-system, BlinkMacSystemFont, sans-serif;color:#fff;padding:24px;direction:ltr;">
+  <div style="width:40px;height:5px;background:#545456;border-radius:3px;margin:0 auto 20px;"></div>
+  
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;border-bottom:1px solid #2c2c2e;padding-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <i class="fa-brands fa-apple" style="font-size:1.6rem;"></i>
+      <span style="font-weight:600;font-size:1.1rem;letter-spacing:-0.5px;">Pay</span>
+    </div>
+    <button onclick="closeApplePaySim()" style="background:none;border:none;color:#0a84ff;font-size:1rem;font-weight:600;cursor:pointer;">Cancel</button>
+  </div>
+
+  <div style="margin-bottom:24px;display:flex;justify-content:space-between;border-bottom:1px solid #2c2c2e;padding-bottom:16px;">
+    <span style="color:#8e8e93;font-size:0.9rem;">MERCHANT</span>
+    <span style="font-weight:600;text-align:right;">Ziad Al-Ayadhi Law Firm</span>
+  </div>
+
+  <div style="margin-bottom:24px;display:flex;justify-content:space-between;border-bottom:1px solid #2c2c2e;padding-bottom:16px;">
+    <span style="color:#8e8e93;font-size:0.9rem;">METHOD</span>
+    <span style="font-weight:600;display:flex;align-items:center;gap:6px;">•••• 4321 <i class="fa-solid fa-credit-card"></i></span>
+  </div>
+
+  <div style="margin-bottom:30px;display:flex;justify-content:space-between;align-items:baseline;">
+    <span style="color:#8e8e93;font-size:0.95rem;font-weight:600;">TOTAL</span>
+    <span style="font-size:1.8rem;font-weight:700;letter-spacing:-0.5px;"><span id="applepay-price">250.00</span> SAR</span>
+  </div>
+
+  <div id="applePayFaceID" style="text-align:center;padding:10px 0 20px;">
+    <div id="faceid-icon-container" style="width:70px;height:70px;border-radius:50%;border:2px solid #0a84ff;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;color:#0a84ff;font-size:2rem;position:relative;">
+      <i class="fa-solid fa-face-id" id="faceid-icon"></i>
+    </div>
+    <p id="faceid-status" style="font-size:0.95rem;color:#8e8e93;font-weight:500;">Double Click to Pay</p>
+  </div>
+</div>
+<!-- Apple Pay Simulator Overlay Backdrop -->
+<div id="applePayBackdrop" onclick="closeApplePaySim()" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:opacity 0.3s ease;z-index:10090;"></div>
+</body>
+</html>
+

@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | مكتب زياد العياضي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --olive-dark:  #1a4a2e;
+      --olive-mid:   #2d6b45;
+      --olive-light: #4a9463;
+      --gold:        #c9a84c;
+      --gold-light:  #f0d060;
+      --bg-dark:     #0e1a14;
+      --bg-card:     #162213;
+      --bg-sidebar:  #0d1a10;
+      --sidebar-w:   260px;
+      --text-main:   #e8f0e8;
+      --text-muted:  #8aab8a;
+      --border:      rgba(74,148,99,0.15);
+      --red:         #e05252;
+      --amber:       #d4a017;
+      --green:       #3dba6f;
+      --blue:        #4a90d9;
+      --font-ui: 'Noto Naskh Arabic', sans-serif;
+      --font-heading: 'El Messiri', serif;
+      --r: 12px;
+      --ease: 0.25s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: var(--font-ui); background: var(--bg-dark); color: var(--text-main); }
+
+    /* ── Layout ── */
+    .admin-layout { display: flex; height: 100vh; overflow: hidden; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+      transition: width var(--ease);
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo img { height: 40px; }
+    .sidebar-logo-text { font-family: var(--font-heading); font-size: 0.9rem; color: var(--gold); line-height: 1.3; }
+
+    .sidebar-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      padding: 18px 20px 6px;
+      text-transform: uppercase;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 20px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: right;
+      transition: all var(--ease);
+      border-right: 3px solid transparent;
+      position: relative;
+    }
+    .nav-item i { width: 18px; text-align: center; font-size: 0.95rem; }
+    .nav-item:hover { color: var(--text-main); background: rgba(255,255,255,0.04); }
+    .nav-item.active {
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      border-right-color: var(--gold);
+    }
+    .nav-item .badge {
+      margin-right: auto;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 20px;
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .admin-user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .admin-avatar {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--olive-mid), var(--olive-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1rem; flex-shrink: 0;
+    }
+    .admin-user-info { flex: 1; min-width: 0; }
+    .admin-user-name { font-size: 0.82rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .admin-user-role { font-size: 0.7rem; color: var(--gold); }
+    .logout-btn {
+      background: none; border: none; color: var(--text-muted); cursor: pointer;
+      font-size: 1rem; padding: 4px; transition: color var(--ease);
+    }
+    .logout-btn:hover { color: var(--red); }
+
+    /* ── Main ── */
+    .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* ── Top bar ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .topbar-title { font-family: var(--font-heading); font-size: 1.25rem; color: var(--text-main); }
+    .topbar-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+    .refresh-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 0.83rem;
+      transition: all var(--ease);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .refresh-btn:hover { background: rgba(255,255,255,0.09); color: var(--text-main); }
+    .back-site-btn {
+      background: linear-gradient(135deg, var(--olive-mid), var(--olive-dark));
+      border: none; color: #fff;
+      padding: 8px 16px; border-radius: 8px; cursor: pointer;
+      font-family: var(--font-ui); font-size: 0.83rem;
+      text-decoration: none; display: flex; align-items: center; gap: 7px;
+      transition: opacity var(--ease);
+    }
+    .back-site-btn:hover { opacity: 0.85; }
+
+    /* ── Content ── */
+    .content-area { flex: 1; overflow-y: auto; padding: 28px; }
+
+    /* ── Section ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Stat Cards ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--ease), box-shadow var(--ease);
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 4px; height: 100%;
+    }
+    .stat-card.c-gold::before { background: var(--gold); }
+    .stat-card.c-green::before { background: var(--green); }
+    .stat-card.c-blue::before { background: var(--blue); }
+    .stat-card.c-red::before { background: var(--red); }
+    .stat-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 14px;
+    }
+    .c-gold .stat-icon { background: rgba(201,168,76,0.12); color: var(--gold); }
+    .c-green .stat-icon { background: rgba(61,186,111,0.12); color: var(--green); }
+    .c-blue .stat-icon { background: rgba(74,144,217,0.12); color: var(--blue); }
+    .c-red .stat-icon { background: rgba(224,82,82,0.12); color: var(--red); }
+    .stat-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--text-main); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ── Data Cards ── */
+    .data-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .data-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-card-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--text-main);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .data-card-title i { color: var(--gold); }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-box input {
+      background: none; border: none; outline: none;
+      color: var(--text-main); font-family: var(--font-ui); font-size: 0.85rem;
+      width: 100%;
+    }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-box i { color: var(--text-muted); font-size: 0.85rem; }
+
+    .filter-select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.83rem;
+      cursor: pointer;
+    }
+    .filter-select option { background: var(--bg-card); }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    thead th {
+      padding: 12px 16px;
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background var(--ease); }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 13px 16px; color: var(--text-main); vertical-align: middle; }
+
+    /* ── Badges ── */
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-new     { background: rgba(74,144,217,0.15); color: var(--blue); border: 1px solid rgba(74,144,217,0.3); }
+    .badge-pending { background: rgba(212,160,23,0.15); color: var(--amber); border: 1px solid rgba(212,160,23,0.3); }
+    .badge-done    { background: rgba(61,186,111,0.15); color: var(--green); border: 1px solid rgba(61,186,111,0.3); }
+
+    /* ── Action buttons ── */
+    .action-btn {
+      background: none; border: 1px solid var(--border); color: var(--text-muted);
+      padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.78rem;
+      transition: all var(--ease); font-family: var(--font-ui);
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .action-btn:hover { background: rgba(255,255,255,0.06); color: var(--text-main); }
+    .action-btn.danger:hover { background: rgba(224,82,82,0.1); color: var(--red); border-color: var(--red); }
+
+    /* ── Status update dropdown ── */
+    .status-select {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    .status-select option { background: var(--bg-card); }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 16px; display: block; color: var(--border); }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* ── Loading spinner ── */
+    .loading-state { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── Recent activity card ── */
+    .activity-list { padding: 0; list-style: none; }
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 5px;
+    }
+    .activity-text { font-size: 0.85rem; color: var(--text-main); line-height: 1.5; }
+    .activity-time { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; }
+
+    /* ── Dashboard grid ── */
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    /* ── User avatar initial ── */
+    .user-initial {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--olive-mid), var(--olive-dark));
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--gold); font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .user-cell { display: flex; align-items: center; gap: 10px; }
+
+    /* ── Expanded message row ── */
+    .msg-expand { 
+      background: rgba(255,255,255,0.02); 
+      border-top: 1px solid var(--border); 
+      display: none; 
+    }
+    .msg-expand.open { display: table-row; }
+    .msg-expand td { padding: 12px 16px; }
+    .msg-body-text { 
+      background: rgba(0,0,0,0.2); 
+      border-radius: 8px; 
+      padding: 12px 16px; 
+      font-size: 0.88rem; 
+      line-height: 1.8; 
+      color: var(--text-main);
+      white-space: pre-wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .dash-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 650px) {
+      .sidebar { width: 200px; }
+      :root { --sidebar-w: 200px; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Scrollbar styling ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Auth guard overlay ── */
+    #authGuard {
+      position: fixed; inset: 0;
+      background: var(--bg-dark);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      flex-direction: column; gap: 16px;
+    }
+    #authGuard i { font-size: 2.5rem; color: var(--gold); }
+    #authGuard p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ── Toast notification ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      z-index: 9000;
+      transition: transform 0.3s ease;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { border-color: var(--green); }
+    .toast.success i { color: var(--green); }
+    .toast.error { border-color: var(--red); }
+    .toast.error i { color: var(--red); }
+  </style>
+</head>
+<body>
+
+<!-- Auth Guard -->
+<div id="authGuard">
+  <i class="fa-solid fa-circle-notch fa-spin"></i>
+  <p>جاري التحقق من الصلاحيات...</p>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastMsg">تم الحفظ</span>
+</div>
+
+<!-- ══ MAIN LAYOUT ══ -->
+<div class="admin-layout" id="adminLayout" style="display:none;">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/images/logo-light.png" alt="زياد العياضي" onerror="this.style.display='none'">
+      <div class="sidebar-logo-text">لوحة التحكم<br><span style="color:var(--text-muted);font-size:0.75rem;">مكتب زياد العياضي</span></div>
+    </div>
+
+    <div class="sidebar-section-label">الرئيسية</div>
+    <button class="nav-item active" onclick="showSection('dashboard')" id="nav-dashboard">
+      <i class="fa-solid fa-gauge-high"></i> لوحة الرئيسية
+    </button>
+
+    <div class="sidebar-section-label">إدارة الطلبات</div>
+    <button class="nav-item" onclick="showSection('bookings')" id="nav-bookings">
+      <i class="fa-regular fa-calendar-check"></i> طلبات الاستشارة
+      <span class="badge" id="bookings-badge">0</span>
+    </button>
+    <button class="nav-item" onclick="showSection('messages')" id="nav-messages">
+      <i class="fa-regular fa-envelope"></i> رسائل التواصل
+      <span class="badge" id="messages-badge">0</span>
+    </button>
+
+    <div class="sidebar-section-label">المحتوى والمدونة</div>
+    <button class="nav-item" onclick="showSection('articles')" id="nav-articles">
+      <i class="fa-regular fa-newspaper"></i> المقالات القانونية
+    </button>
+
+    <div class="sidebar-section-label">المستخدمون</div>
+    <button class="nav-item" onclick="showSection('users')" id="nav-users">
+      <i class="fa-solid fa-users"></i> المسجلون
+    </button>
+
+    <div class="sidebar-footer">
+      <div class="admin-user-card">
+        <div class="admin-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div class="admin-user-info">
+          <div class="admin-user-name" id="admin-name">المدير</div>
+          <div class="admin-user-role">مدير الموقع</div>
+        </div>
+        <button class="logout-btn" onclick="adminLogout()" title="تسجيل الخروج">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN AREA ══ -->
+  <div class="main-area">
+
+    <!-- Top Bar -->
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbar-title">لوحة الرئيسية</div>
+        <div class="topbar-subtitle" id="topbar-subtitle">نظرة عامة على أداء الموقع</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="refresh-btn" onclick="loadAllData()">
+          <i class="fa-solid fa-rotate-right"></i> تحديث البيانات
+        </button>
+        <a href="../index.html" class="back-site-btn" target="_blank">
+          <i class="fa-solid fa-globe"></i> عرض الموقع
+        </a>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-area">
+
+      <!-- ══ DASHBOARD SECTION ══ -->
+      <div class="section active" id="sec-dashboard">
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card c-gold">
+            <div class="stat-icon"><i class="fa-regular fa-calendar-check"></i></div>
+            <div class="stat-value" id="stat-bookings">—</div>
+            <div class="stat-label">طلبات الاستشارة</div>
+          </div>
+          <div class="stat-card c-blue">
+            <div class="stat-icon"><i class="fa-regular fa-envelope"></i></div>
+            <div class="stat-value" id="stat-messages">—</div>
+            <div class="stat-label">رسائل التواصل</div>
+          </div>
+          <div class="stat-card c-green">
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-value" id="stat-users">—</div>
+            <div class="stat-label">عميل مسجل</div>
+          </div>
+          <div class="stat-card c-red">
+            <div class="stat-icon"><i class="fa-solid fa-bell"></i></div>
+            <div class="stat-value" id="stat-new">—</div>
+            <div class="stat-label">طلب جديد يحتاج متابعة</div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Recent Bookings -->
+          <div class="data-card">
+            <div class="data-card-header">
+              <div class="data-card-title"><i class="fa-regular fa-calendar-check"></i> آخر طلبات الاستشارة</div>
+              <button class="action-btn" onclick="showSection('bookings')">عرض الكل</button>
+            </div>
+            <div id="recent-bookings-list">
+              <div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</div>
+            </div>
+          </div>
+
+          <!-- Recent Messages -->
+          <div class="data-card">
+            <div class="data-card-header">
+              <div class="data-card-title"><i class="fa-regular fa-envelope"></i> آخر الرسائل الواردة</div>
+              <button class="action-btn" onclick="showSection('messages')">عرض الكل</button>
+            </div>
+            <div id="recent-messages-list">
+              <div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ BOOKINGS SECTION ══ -->
+      <div class="section" id="sec-bookings">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-title"><i class="fa-regular fa-calendar-check"></i> جميع طلبات الاستشارة</div>
+            <span id="bookings-count" style="font-size:0.8rem;color:var(--text-muted);"></span>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="booking-search" placeholder="بحث بالاسم أو الجوال..." oninput="filterBookings()">
+            </div>
+            <select class="filter-select" id="booking-status-filter" onchange="filterBookings()">
+              <option value="">كل الحالات</option>
+              <option value="جديد">جديد</option>
+              <option value="قيد المعالجة">قيد المعالجة</option>
+              <option value="تم التواصل">تم التواصل</option>
+              <option value="مكتمل">مكتمل</option>
+            </select>
+            <select class="filter-select" id="booking-type-filter" onchange="filterBookings()">
+              <option value="">كل الأنواع</option>
+              <option value="حضورية">حضورية</option>
+              <option value="عبر الفيديو">عبر الفيديو</option>
+              <option value="هاتفية">هاتفية</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>الاسم</th>
+                  <th>الجوال</th>
+                  <th>البريد</th>
+                  <th>الخدمة</th>
+                  <th>النوع</th>
+                  <th>حالة الدفع</th>
+                  <th>المبلغ</th>
+                  <th>الوقت المفضل</th>
+                  <th>الحالة</th>
+                  <th>التاريخ</th>
+                  <th>إجراء</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-tbody">
+                <tr><td colspan="12" class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ MESSAGES SECTION ══ -->
+      <div class="section" id="sec-messages">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-title"><i class="fa-regular fa-envelope"></i> رسائل التواصل</div>
+            <span id="messages-count" style="font-size:0.8rem;color:var(--text-muted);"></span>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="msg-search" placeholder="بحث بالاسم أو الرسالة..." oninput="filterMessages()">
+            </div>
+            <select class="filter-select" id="msg-status-filter" onchange="filterMessages()">
+              <option value="">كل الحالات</option>
+              <option value="جديد">جديد</option>
+              <option value="مقروء">مقروء</option>
+              <option value="تم الرد">تم الرد</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table id="messages-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>الاسم</th>
+                  <th>الجوال</th>
+                  <th>البريد</th>
+                  <th>الخدمة</th>
+                  <th>مقتطف الرسالة</th>
+                  <th>الحالة</th>
+                  <th>التاريخ</th>
+                  <th>إجراء</th>
+                </tr>
+              </thead>
+              <tbody id="messages-tbody">
+                <tr><td colspan="9" class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ARTICLES SECTION ══ -->
+      <div class="section" id="sec-articles">
+        <div class="data-card">
+          <div class="data-card-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="data-card-title"><i class="fa-regular fa-newspaper"></i> المقالات القانونية</div>
+            <button class="back-site-btn" onclick="openArticleModal()" style="background:var(--gold); border:none;"><i class="fa-solid fa-plus"></i> إضافة مقال جديد</button>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="article-search" placeholder="بحث في المقالات..." oninput="filterArticles()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 50px;">#</th>
+                  <th style="width: 120px;">صورة الغلاف</th>
+                  <th>العنوان</th>
+                  <th style="width: 100px;">الحالة</th>
+                  <th style="width: 150px;">تاريخ النشر</th>
+                  <th style="width: 180px;">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="articles-tbody">
+                <tr><td colspan="5" class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ USERS SECTION ══ -->
+      <div class="section" id="sec-users">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-title"><i class="fa-solid fa-users"></i> العملاء المسجلون</div>
+            <span id="users-count" style="font-size:0.8rem;color:var(--text-muted);"></span>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="user-search" placeholder="بحث بالاسم أو الإيميل..." oninput="filterUsers()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>الاسم</th>
+                  <th>البريد الإلكتروني</th>
+                  <th>الجوال</th>
+                  <th>تاريخ التسجيل</th>
+                  <th>آخر دخول</th>
+                </tr>
+              </thead>
+              <tbody id="users-tbody">
+                <tr><td colspan="6" class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /main-area -->
+</div><!-- /admin-layout -->
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/auth.js"></script>
+<script>
+/* ════════════════════════════════════
+   ADMIN DASHBOARD SCRIPT
+   ════════════════════════════════════ */
+
+const ADMIN = 'zaa.law.co@gmail.com';
+
+let allBookings = [];
+let allMessages = [];
+let allUsers    = [];
+let allArticles = [];
+
+/* ── Auth Guard ── */
+const ADMIN_MAIL = 'zaa.law.co@gmail.com';
+
+/* ── Articles Management ── */
+async function loadArticles() {
+  if (!window.supabaseClient) return;
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('articles')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (!error && data) {
+      allArticles = data;
+      renderArticles(allArticles);
+    }
+  } catch (e) { console.error(e); }
+}
+
+function renderArticles(data) {
+  const tbody = document.getElementById('articles-tbody');
+  if (!tbody) return;
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i class="fa-regular fa-newspaper"></i><p>لا توجد مقالات بعد</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map((art, i) => {
+    const imgHtml = art.image_base64 
+      ? `<img src="${art.image_base64}" style="width:60px;height:40px;object-fit:cover;border-radius:4px;border:1px solid var(--border-soft);">`
+      : `<div style="width:60px;height:40px;background:rgba(255,255,255,0.05);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.8rem;"><i class="fa-regular fa-image"></i></div>`;
+    const statusBadgeHtml = art.status === 'published' 
+      ? `<span class="badge-status badge-done" style="font-size:0.75rem;padding:2px 6px;">منشور</span>`
+      : `<span class="badge-status badge-new" style="background:rgba(255,255,255,0.05);color:var(--text-muted);border-color:rgba(255,255,255,0.1);font-size:0.75rem;padding:2px 6px;">مسودة</span>`;
+
+    return `
+      <tr>
+        <td style="color:var(--text-muted)">${i + 1}</td>
+        <td>${imgHtml}</td>
+        <td style="font-weight:bold;text-align:right;">${art.title || '—'}</td>
+        <td>${statusBadgeHtml}</td>
+        <td style="font-size:0.82rem;color:var(--text-muted);">${formatDate(art.created_at)}</td>
+        <td>
+          <button class="action-btn" onclick="editArticle('${art.id}')" style="margin-left:8px;color:var(--gold);"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>
+          <button class="action-btn" onclick="deleteArticle('${art.id}')" style="color:var(--red);"><i class="fa-solid fa-trash-can"></i> حذف</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterArticles() {
+  const q = document.getElementById('article-search').value.toLowerCase();
+  const filtered = allArticles.filter(art => 
+    (art.title||'').toLowerCase().includes(q) || (art.content||'').toLowerCase().includes(q)
+  );
+  renderArticles(filtered);
+}
+
+function openArticleModal(id = null) {
+  const modal = document.getElementById('articleModal');
+  const form = document.getElementById('articleForm');
+  form.reset();
+  removeArticleImage();
+  
+  if (id) {
+    const art = allArticles.find(a => a.id === id);
+    if (art) {
+      document.getElementById('articleModalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> تعديل المقال';
+      document.getElementById('article-id').value = art.id;
+      document.getElementById('article-title').value = art.title;
+      document.getElementById('article-category').value = art.category || 'commercial';
+      document.getElementById('article-status').value = art.status || 'published';
+      document.getElementById('article-content').value = art.content;
+      if (art.image_base64) {
+        document.getElementById('article-image-preview').src = art.image_base64;
+        document.getElementById('article-image-preview-container').style.display = 'block';
+        document.getElementById('article-image-base64').value = art.image_base64;
+      }
+    }
+  } else {
+    document.getElementById('articleModalTitle').innerHTML = '<i class="fa-solid fa-plus"></i> إضافة مقال جديد';
+    document.getElementById('article-id').value = '';
+    document.getElementById('article-category').value = 'commercial';
+    document.getElementById('article-status').value = 'published';
+  }
+  modal.style.display = 'flex';
+}
+
+function closeArticleModal() {
+  document.getElementById('articleModal').style.display = 'none';
+}
+
+function previewArticleImage(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('article-image-preview').src = e.target.result;
+      document.getElementById('article-image-preview-container').style.display = 'block';
+      document.getElementById('article-image-base64').value = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function removeArticleImage() {
+  document.getElementById('article-image-input').value = '';
+  document.getElementById('article-image-preview').src = '';
+  document.getElementById('article-image-preview-container').style.display = 'none';
+  document.getElementById('article-image-base64').value = '';
+}
+
+async function saveArticle(e) {
+  e.preventDefault();
+  if (!window.supabaseClient) return;
+  
+  const id = document.getElementById('article-id').value;
+  const title = document.getElementById('article-title').value;
+  const category = document.getElementById('article-category').value;
+  const status = document.getElementById('article-status').value;
+  const content = document.getElementById('article-content').value;
+  const image_base64 = document.getElementById('article-image-base64').value;
+  
+  try {
+    const payload = { title, content, image_base64, category, status };
+    
+    if (id) {
+      // Update
+      const { error } = await window.supabaseClient
+        .from('articles')
+        .update(payload)
+        .eq('id', id);
+      if (error) throw error;
+      showToast('تم تعديل المقال بنجاح', 'success');
+    } else {
+      // Insert
+      const { error } = await window.supabaseClient
+        .from('articles')
+        .insert([payload]);
+      if (error) throw error;
+      showToast('تم إضافة المقال بنجاح', 'success');
+    }
+    closeArticleModal();
+    loadArticles();
+  } catch (err) {
+    console.error(err);
+    showToast('حدث خطأ أثناء حفظ المقال', 'error');
+  }
+}
+
+async function editArticle(id) {
+  openArticleModal(id);
+}
+
+async function deleteArticle(id) {
+  if (!confirm('هل أنت متأكد من رغبتك في حذف هذا المقال؟')) return;
+  if (!window.supabaseClient) return;
+  try {
+    const { error } = await window.supabaseClient
+      .from('articles')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
+    showToast('تم حذف المقال بنجاح', 'success');
+    loadArticles();
+  } catch (err) {
+    console.error(err);
+    showToast('حدث خطأ أثناء حذف المقال', 'error');
+  }
+}
+
+async function checkAdminAccess() {
+  // 1. Try localStorage first (fast path)
+  let user = getCurrentUser();
+  if (user && user.is_admin) {
+    initDashboard(user);
+    return;
+  }
+
+  // 2. Try getting session directly from Supabase (reliable)
+  if (window.supabaseClient) {
+    try {
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (session && session.user) {
+        const email = session.user.email.toLowerCase();
+        const isAdmin = email === ADMIN_MAIL;
+        if (isAdmin) {
+          // Write correct session with is_admin flag
+          const u = {
+            id:       session.user.id,
+            name:     session.user.user_metadata?.full_name || session.user.email.split('@')[0],
+            phone:    session.user.user_metadata?.phone || '',
+            email:    session.user.email,
+            is_admin: true
+          };
+          localStorage.setItem('lf_session', JSON.stringify(u));
+          initDashboard(u);
+          return;
+        }
+      }
+    } catch (e) { console.error(e); }
+  }
+
+  // 3. Not authorized
+  window.location.href = 'auth.html';
+}
+
+checkAdminAccess();
+
+function initDashboard(user) {
+  document.getElementById('authGuard').style.display = 'none';
+  document.getElementById('adminLayout').style.display = 'flex';
+  document.getElementById('admin-name').textContent = user.name?.split(' ')[0] || 'المدير';
+  loadAllData();
+}
+
+/* ── Logout ── */
+async function adminLogout() {
+  await authLogout();
+  window.location.href = 'auth.html';
+}
+
+/* ── Section switching ── */
+const sectionMeta = {
+  dashboard: { title: 'لوحة الرئيسية', subtitle: 'نظرة عامة على أداء الموقع' },
+  bookings:  { title: 'طلبات الاستشارة', subtitle: 'إدارة ومتابعة طلبات الحجز' },
+  messages:  { title: 'رسائل التواصل', subtitle: 'استفسارات ورسائل العملاء' },
+  articles:  { title: 'المقالات القانونية', subtitle: 'إدارة وتعديل مقالات المدونة' },
+  users:     { title: 'العملاء المسجلون', subtitle: 'قائمة الحسابات على الموقع' },
+};
+
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  document.getElementById('nav-' + name)?.classList.add('active');
+  const meta = sectionMeta[name] || {};
+  document.getElementById('topbar-title').textContent = meta.title || '';
+  document.getElementById('topbar-subtitle').textContent = meta.subtitle || '';
+}
+
+/* ══════════════════════════════════════
+   DATA LOADING
+══════════════════════════════════════ */
+async function loadAllData() {
+  await Promise.all([loadBookings(), loadMessages(), loadUsers(), loadArticles()]);
+  renderStats();
+  renderRecentBookings();
+  renderRecentMessages();
+}
+
+/* ── Bookings ── */
+async function loadBookings() {
+  if (!window.supabaseClient) return;
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('bookings')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (!error && data) {
+      allBookings = data;
+      renderBookings(allBookings);
+      const newCount = allBookings.filter(b => (b.status || 'جديد') === 'جديد').length;
+      document.getElementById('bookings-badge').textContent = newCount;
+    }
+  } catch (e) { console.error(e); }
+}
+
+function renderBookings(data) {
+  const tbody = document.getElementById('bookings-tbody');
+  document.getElementById('bookings-count').textContent = data.length + ' طلب';
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="12"><div class="empty-state"><i class="fa-regular fa-calendar-xmark"></i><p>لا توجد طلبات بعد</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map((b, i) => {
+    const payStatus = b.payment_status === 'paid' 
+      ? `<span class="badge-status badge-done" style="font-size:0.7rem;padding:2px 6px;">مدفوع (${b.payment_method || ''})</span>`
+      : `<span class="badge-status badge-new" style="background:rgba(224,82,82,0.1);color:var(--red);border-color:rgba(224,82,82,0.2);font-size:0.7rem;padding:2px 6px;">غير مدفوع</span>`;
+      
+    const amt = b.amount ? `${b.amount} ر.س` : '—';
+    const isBank = b.payment_method === 'bank_transfer';
+    const bankDetailsHTML = isBank
+      ? `<div style="margin-top:14px;background:rgba(255,255,255,0.04);padding:16px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;width:100%;box-sizing:border-box;">
+           <div style="flex:1;min-width:200px;text-align:right;">
+             <span style="font-size:0.8rem;color:var(--text-muted);display:block;margin-bottom:6px;"><i class="fa-solid fa-user-pen"></i> اسم المحوِّل الثلاثي</span>
+             <strong style="font-size:1.1rem;color:#d4af37;">${b.sender_name || 'غير مسجل'}</strong>
+             <div style="margin-top:12px;">
+                <span style="font-size:0.75rem;color:var(--text-muted);display:inline-block;margin-left:8px;">طريقة الدفع:</span>
+                <span style="background:rgba(255,255,255,0.1);color:#fff;font-size:0.75rem;padding:4px 8px;border-radius:4px;"><i class="fa-solid fa-building-columns"></i> تحويل بنكي</span>
+             </div>
+           </div>
+           ${b.receipt_base64 ? `
+           <div style="text-align:left;">
+             <span style="font-size:0.8rem;color:var(--text-muted);display:block;margin-bottom:8px;text-align:center;">إيصال التحويل المرفق</span>
+             <a href="javascript:void(0)" onclick="openImageViewer('${b.receipt_base64}')" style="display:inline-block;background:#fff;padding:4px;border-radius:8px;box-shadow:0 6px 15px rgba(0,0,0,0.2);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+               <img src="${b.receipt_base64}" alt="إيصال التحويل" style="max-width:220px;max-height:160px;border-radius:4px;cursor:zoom-in;object-fit:cover;display:block;">
+             </a>
+           </div>
+           ` : '<div style="flex:1;text-align:left;"><em style="color:#e05252;font-size:0.85rem;background:rgba(224,82,82,0.1);padding:6px 10px;border-radius:4px;"><i class="fa-solid fa-triangle-exclamation"></i> لم يتم إرفاق إيصال</em></div>'}
+         </div>`
+      : '';
+
+    return `
+      <tr>
+        <td style="color:var(--text-muted)">${i + 1}</td>
+        <td><div class="user-cell"><div class="user-initial">${(b.name||'?')[0]}</div>${b.name || '—'}</div></td>
+        <td><a href="tel:${b.phone}" style="color:var(--gold);text-decoration:none;">${b.phone || '—'}</a></td>
+        <td style="font-size:0.8rem;color:var(--text-muted);">${b.email || '—'}</td>
+        <td style="font-size:0.82rem;">${b.service || '—'}</td>
+        <td><span style="font-size:0.82rem;">${b.type || '—'}</span></td>
+        <td>${payStatus}</td>
+        <td style="font-weight:700;color:var(--olive-light);">${amt}</td>
+        <td style="font-size:0.82rem;">${b.preferred_time || '—'}</td>
+        <td>${statusBadge(b.status || 'جديد')}</td>
+        <td style="font-size:0.78rem;color:var(--text-muted);">${formatDate(b.created_at)}</td>
+        <td>
+          <select class="status-select" onchange="updateBookingStatus('${b.id}', this.value)">
+            <option value="جديد" ${(b.status||'جديد')==='جديد'?'selected':''}>جديد</option>
+            <option value="قيد المعالجة" ${b.status==='قيد المعالجة'?'selected':''}>قيد المعالجة</option>
+            <option value="تم التواصل" ${b.status==='تم التواصل'?'selected':''}>تم التواصل</option>
+            <option value="مكتمل" ${b.status==='مكتمل'?'selected':''}>مكتمل</option>
+          </select>
+        </td>
+      </tr>
+      ${(b.description || isBank) ? `
+        <tr class="msg-expand open">
+          <td colspan="12">
+            <div class="msg-body-text">
+              ${b.description ? `<div style="margin-bottom:8px;"><strong>ملاحظات:</strong> ${b.description}</div>` : ''}
+              ${bankDetailsHTML}
+            </div>
+          </td>
+        </tr>` : ''}
+    `;
+  }).join('');
+}
+
+function filterBookings() {
+  const q = document.getElementById('booking-search').value.toLowerCase();
+  const st = document.getElementById('booking-status-filter').value;
+  const ty = document.getElementById('booking-type-filter').value;
+  const filtered = allBookings.filter(b => {
+    const matchQ  = !q  || (b.name||'').toLowerCase().includes(q) || (b.phone||'').includes(q);
+    const matchSt = !st || (b.status||'جديد') === st;
+    const matchTy = !ty || (b.type||'') === ty;
+    return matchQ && matchSt && matchTy;
+  });
+  renderBookings(filtered);
+}
+
+async function updateBookingStatus(id, status) {
+  if (!window.supabaseClient) return;
+  try {
+    await window.supabaseClient.from('bookings').update({ status }).eq('id', id);
+    allBookings = allBookings.map(b => b.id === id ? { ...b, status } : b);
+    showToast('تم تحديث حالة الطلب', 'success');
+    renderStats();
+  } catch (e) { showToast('خطأ في التحديث', 'error'); }
+}
+
+/* ── Messages ── */
+async function loadMessages() {
+  if (!window.supabaseClient) return;
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('contact_messages')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (!error && data) {
+      allMessages = data;
+      renderMessages(allMessages);
+      const newCount = allMessages.filter(m => (m.status || 'جديد') === 'جديد').length;
+      document.getElementById('messages-badge').textContent = newCount;
+    }
+  } catch (e) { console.error(e); }
+}
+
+function renderMessages(data) {
+  const tbody = document.getElementById('messages-tbody');
+  document.getElementById('messages-count').textContent = data.length + ' رسالة';
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><i class="fa-regular fa-envelope"></i><p>لا توجد رسائل بعد</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map((m, i) => {
+    const rowId = 'msg-expand-' + i;
+    const snippet = (m.message || '').slice(0, 60) + ((m.message || '').length > 60 ? '...' : '');
+    return `
+      <tr>
+        <td style="color:var(--text-muted)">${i + 1}</td>
+        <td><div class="user-cell"><div class="user-initial">${(m.name||'?')[0]}</div>${m.name || '—'}</div></td>
+        <td><a href="tel:${m.phone}" style="color:var(--gold);text-decoration:none;">${m.phone || '—'}</a></td>
+        <td style="font-size:0.8rem;color:var(--text-muted);">${m.email || '—'}</td>
+        <td style="font-size:0.82rem;">${m.service || '—'}</td>
+        <td>
+          <span style="font-size:0.82rem;">${snippet}</span>
+          ${m.message ? `<button class="action-btn" style="margin-right:6px;" onclick="toggleExpand('${rowId}')"><i class="fa-solid fa-chevron-down"></i> عرض</button>` : ''}
+        </td>
+        <td>${statusBadge(m.status || 'جديد')}</td>
+        <td style="font-size:0.78rem;color:var(--text-muted);">${formatDate(m.created_at)}</td>
+        <td>
+          <select class="status-select" onchange="updateMessageStatus('${m.id}', this.value)">
+            <option value="جديد" ${(m.status||'جديد')==='جديد'?'selected':''}>جديد</option>
+            <option value="مقروء" ${m.status==='مقروء'?'selected':''}>مقروء</option>
+            <option value="تم الرد" ${m.status==='تم الرد'?'selected':''}>تم الرد</option>
+          </select>
+        </td>
+      </tr>
+      <tr class="msg-expand" id="${rowId}">
+        <td colspan="9">
+          <div class="msg-body-text">${m.message || ''}</div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function toggleExpand(rowId) {
+  const row = document.getElementById(rowId);
+  if (row) row.classList.toggle('open');
+}
+
+function filterMessages() {
+  const q = document.getElementById('msg-search').value.toLowerCase();
+  const st = document.getElementById('msg-status-filter').value;
+  const filtered = allMessages.filter(m => {
+    const matchQ  = !q  || (m.name||'').toLowerCase().includes(q) || (m.message||'').toLowerCase().includes(q);
+    const matchSt = !st || (m.status||'جديد') === st;
+    return matchQ && matchSt;
+  });
+  renderMessages(filtered);
+}
+
+async function updateMessageStatus(id, status) {
+  if (!window.supabaseClient) return;
+  try {
+    await window.supabaseClient.from('contact_messages').update({ status }).eq('id', id);
+    allMessages = allMessages.map(m => m.id === id ? { ...m, status } : m);
+    showToast('تم تحديث حالة الرسالة', 'success');
+    renderStats();
+  } catch (e) { showToast('خطأ في التحديث', 'error'); }
+}
+
+/* ── Users ── */
+async function loadUsers() {
+  if (!window.supabaseClient) return;
+  try {
+    // Fetch users from bookings (unique emails) since we can't read auth.users directly from client
+    const { data: bData } = await window.supabaseClient.from('bookings').select('name, email, phone, created_at');
+    const { data: mData } = await window.supabaseClient.from('contact_messages').select('name, email, phone, created_at');
+    
+    // Merge and deduplicate by email
+    const combined = [...(bData || []), ...(mData || [])];
+    const seen = new Set();
+    allUsers = combined.filter(u => {
+      if (!u.email || seen.has(u.email)) return false;
+      seen.add(u.email);
+      return true;
+    }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    
+    renderUsers(allUsers);
+  } catch (e) { console.error(e); }
+}
+
+function renderUsers(data) {
+  const tbody = document.getElementById('users-tbody');
+  document.getElementById('users-count').textContent = data.length + ' عميل';
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fa-regular fa-user"></i><p>لا يوجد عملاء مسجلون بعد</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map((u, i) => `
+    <tr>
+      <td style="color:var(--text-muted)">${i + 1}</td>
+      <td><div class="user-cell"><div class="user-initial">${(u.name||'?')[0]}</div>${u.name || '—'}</div></td>
+      <td style="font-size:0.82rem;">${u.email || '—'}</td>
+      <td><a href="tel:${u.phone}" style="color:var(--gold);text-decoration:none;">${u.phone || '—'}</a></td>
+      <td style="font-size:0.78rem;color:var(--text-muted);">${formatDate(u.created_at)}</td>
+      <td style="font-size:0.78rem;color:var(--text-muted);">—</td>
+    </tr>
+  `).join('');
+}
+
+function filterUsers() {
+  const q = document.getElementById('user-search').value.toLowerCase();
+  const filtered = allUsers.filter(u =>
+    (u.name||'').toLowerCase().includes(q) || (u.email||'').toLowerCase().includes(q)
+  );
+  renderUsers(filtered);
+}
+
+/* ── Stats ── */
+function renderStats() {
+  document.getElementById('stat-bookings').textContent = allBookings.length;
+  document.getElementById('stat-messages').textContent = allMessages.length;
+  document.getElementById('stat-users').textContent = allUsers.length;
+  const newItems = [
+    ...allBookings.filter(b => (b.status || 'جديد') === 'جديد'),
+    ...allMessages.filter(m => (m.status || 'جديد') === 'جديد')
+  ].length;
+  document.getElementById('stat-new').textContent = newItems;
+}
+
+/* ── Recent lists for dashboard ── */
+function renderRecentBookings() {
+  const el = document.getElementById('recent-bookings-list');
+  const data = allBookings.slice(0, 5);
+  if (!data.length) {
+    el.innerHTML = '<div class="empty-state"><i class="fa-regular fa-calendar-xmark"></i><p>لا توجد طلبات</p></div>';
+    return;
+  }
+  el.innerHTML = '<ul class="activity-list">' + data.map(b => `
+    <li class="activity-item">
+      <div class="activity-dot" style="background:${b.status==='مكتمل'?'var(--green)':b.status==='قيد المعالجة'?'var(--amber)':'var(--blue)'}"></div>
+      <div>
+        <div class="activity-text"><strong>${b.name || '—'}</strong> — ${b.service || 'استشارة'} (${b.type || ''})</div>
+        <div class="activity-time">${formatDate(b.created_at)} &bull; ${statusBadge(b.status||'جديد')}</div>
+      </div>
+    </li>
+  `).join('') + '</ul>';
+}
+
+function renderRecentMessages() {
+  const el = document.getElementById('recent-messages-list');
+  const data = allMessages.slice(0, 5);
+  if (!data.length) {
+    el.innerHTML = '<div class="empty-state"><i class="fa-regular fa-envelope"></i><p>لا توجد رسائل</p></div>';
+    return;
+  }
+  el.innerHTML = '<ul class="activity-list">' + data.map(m => `
+    <li class="activity-item">
+      <div class="activity-dot" style="background:${m.status==='تم الرد'?'var(--green)':m.status==='مقروء'?'var(--amber)':'var(--red)'}"></div>
+      <div>
+        <div class="activity-text"><strong>${m.name || '—'}</strong>: ${(m.message||'').slice(0,60)}${(m.message||'').length>60?'...':''}</div>
+        <div class="activity-time">${formatDate(m.created_at)} &bull; ${statusBadge(m.status||'جديد')}</div>
+      </div>
+    </li>
+  `).join('') + '</ul>';
+}
+
+/* ── Helpers ── */
+function statusBadge(status) {
+  const map = {
+    'جديد':         'badge-new',
+    'مقروء':        'badge-pending',
+    'قيد المعالجة': 'badge-pending',
+    'تم التواصل':   'badge-pending',
+    'تم الرد':      'badge-done',
+    'مكتمل':        'badge-done',
+  };
+  const cls = map[status] || 'badge-new';
+  return `<span class="badge-status ${cls}">${status}</span>`;
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toastMsg');
+  const i = t.querySelector('i');
+  t.className = 'toast ' + type;
+  i.className = type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark';
+  m.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+
+
+<!-- Article Modal -->
+<div id="articleModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(5px);padding:20px;box-sizing:border-box;">
+  <div style="background:var(--bg-card, #112211);border:1px solid var(--border, #223322);width:100%;max-width:650px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);display:flex;flex-direction:column;max-height:90vh;overflow-y:auto;direction:rtl;text-align:right;">
+    <div style="padding:20px;border-bottom:1px solid var(--border, #223322);display:flex;justify-content:space-between;align-items:center;">
+      <h3 id="articleModalTitle" style="margin:0;color:var(--gold, #d4af37);"><i class="fa-solid fa-pen-to-square"></i> إضافة مقال جديد</h3>
+      <span style="font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;" onclick="closeArticleModal()">&times;</span>
+    </div>
+    <form id="articleForm" onsubmit="saveArticle(event)" style="padding:20px;display:flex;flex-direction:column;gap:15px;">
+      <input type="hidden" id="article-id">
+      
+      <div style="display:flex; gap:15px; width:100%; box-sizing:border-box;">
+        <div style="flex:2;">
+          <label style="display:block;margin-bottom:6px;font-size:0.9rem;color:var(--text-muted);">عنوان المقال</label>
+          <input type="text" id="article-title" required style="width:100%;padding:10px;border-radius:6px;border:1px solid var(--border, #223322);background:rgba(255,255,255,0.05);color:#fff;font-family:var(--font-ui);box-sizing:border-box;">
+        </div>
+        <div style="flex:1;">
+          <label style="display:block;margin-bottom:6px;font-size:0.9rem;color:var(--text-muted);">تصنيف المقال</label>
+          <select id="article-category" style="width:100%;padding:10px;border-radius:6px;border:1px solid var(--border, #223322);background:#112211;color:#fff;font-family:var(--font-ui);box-sizing:border-box;height:41px;">
+            <option value="commercial">قانون تجاري</option>
+            <option value="labor">قانون عمالي</option>
+            <option value="estate">عقارات</option>
+          </select>
+        </div>
+        <div style="flex:1;">
+          <label style="display:block;margin-bottom:6px;font-size:0.9rem;color:var(--text-muted);">حالة النشر</label>
+          <select id="article-status" style="width:100%;padding:10px;border-radius:6px;border:1px solid var(--border, #223322);background:#112211;color:#fff;font-family:var(--font-ui);box-sizing:border-box;height:41px;">
+            <option value="published">منشور</option>
+            <option value="draft">مسودة (مخفي)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.9rem;color:var(--text-muted);">صورة الغلاف</label>
+        <div style="display:flex;gap:15px;align-items:center;">
+          <input type="file" id="article-image-input" accept="image/*" onchange="previewArticleImage(this)" style="display:none;">
+          <button type="button" onclick="document.getElementById('article-image-input').click()" style="background:rgba(255,255,255,0.05);color:#fff;border:1px dashed var(--border,#223322);padding:12px 20px;border-radius:8px;cursor:pointer;font-family:var(--font-ui);"><i class="fa-solid fa-image"></i> اختر صورة...</button>
+          <div id="article-image-preview-container" style="display:none;position:relative;">
+            <img id="article-image-preview" src="" style="width:80px;height:55px;object-fit:cover;border-radius:4px;border:1px solid var(--border);">
+            <button type="button" onclick="removeArticleImage()" style="position:absolute;top:-8px;right:-8px;background:var(--red,#e05252);color:#fff;border:none;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.75rem;">&times;</button>
+          </div>
+        </div>
+        <input type="hidden" id="article-image-base64">
+      </div>
+
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.9rem;color:var(--text-muted);">محتوى المقال</label>
+        <textarea id="article-content" required rows="10" placeholder="اكتب المقال القانوني هنا..." style="width:100%;padding:12px;border-radius:6px;border:1px solid var(--border, #223322);background:rgba(255,255,255,0.05);color:#fff;font-family:var(--font-ui);line-height:1.6;box-sizing:border-box;resize:vertical;"></textarea>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:10px;justify-content:flex-end;">
+        <button type="button" onclick="closeArticleModal()" style="background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border);padding:10px 20px;border-radius:8px;cursor:pointer;font-family:var(--font-ui);">إلغاء</button>
+        <button type="submit" style="background:var(--gold,#d4af37);color:#112211;border:none;padding:10px 25px;font-weight:bold;border-radius:8px;cursor:pointer;font-family:var(--font-ui);">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="imageViewer" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(5px);">
+  <span style="position:absolute;top:20px;right:30px;font-size:2.5rem;color:#fff;cursor:pointer;font-weight:bold;" onclick="closeImageViewer()">&times;</span>
+  <img id="imageViewerImg" src="" style="max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+</div>
+<script>
+function openImageViewer(src) {
+  document.getElementById('imageViewerImg').src = src;
+  document.getElementById('imageViewer').style.display = 'flex';
+}
+function closeImageViewer() {
+  document.getElementById('imageViewer').style.display = 'none';
+  document.getElementById('imageViewerImg').src = '';
+}
+</script>
+</body>
+</html>

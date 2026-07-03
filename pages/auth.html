@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تسجيل الدخول أو إنشاء حساب جديد في مكتب زياد العياضي للاستشارات القانونية والمحاماة.">
+  <title>تسجيل الدخول | زياد العياضي للمحاماة</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=El+Messiri:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Base styles -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* ── Auth Page Layout ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-ui, 'Noto Naskh Arabic', sans-serif);
+    }
+
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── Left Panel (decorative) ── */
+    .auth-panel-left {
+      background: linear-gradient(155deg, #0d2b1a 0%, #1a4a2e 50%, #0d2b1a 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 50px;
+      color: #fff;
+    }
+
+    .auth-panel-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 25%, rgba(212,175,55,0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(212,175,55,0.08) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* Architectural SVG lines */
+    .auth-arch-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .auth-left-logo {
+      height: 130px;
+      margin-bottom: 40px;
+      filter: drop-shadow(0 4px 20px rgba(212,175,55,0.3));
+    }
+
+    .auth-left-title {
+      font-family: 'El Messiri', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .auth-left-title em {
+      font-style: normal;
+      color: #d4af37;
+    }
+
+    .auth-left-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 2;
+      max-width: 340px;
+      margin-bottom: 50px;
+    }
+
+    .auth-left-benefits {
+      list-style: none;
+      text-align: right;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .auth-left-benefits li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .auth-left-benefits li i {
+      color: #d4af37;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .auth-left-seal {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ── Right Panel (form) ── */
+    .auth-panel-right {
+      background: #fdf8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 40px;
+      overflow-y: auto;
+    }
+
+    .auth-form-wrap {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .auth-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a7c59;
+      font-size: 0.85rem;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: opacity 0.2s;
+      font-family: var(--font-ui);
+    }
+    .auth-back-link:hover { opacity: 0.7; }
+
+    /* Tabs */
+    .auth-tabs {
+      display: flex;
+      background: #fff;
+      border: 1px solid #e0d9cc;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 32px;
+      gap: 4px;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      border-radius: 9px;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7a7060;
+      transition: all 0.25s ease;
+    }
+    .auth-tab-btn.active {
+      background: #1a4a2e;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(26,74,46,0.25);
+    }
+
+    /* Forms container */
+    .auth-form-panel {
+      display: none;
+      animation: authSlideIn 0.3s ease;
+    }
+    .auth-form-panel.active { display: block; }
+    @keyframes authSlideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .auth-form-title {
+      font-family: 'El Messiri', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0d2b1a;
+      margin-bottom: 6px;
+    }
+    .auth-form-sub {
+      font-size: 0.88rem;
+      color: #7a7060;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    /* Fields */
+    .auth-fg {
+      margin-bottom: 18px;
+    }
+    .auth-fg label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #3d3526;
+      margin-bottom: 7px;
+      font-family: var(--font-ui);
+    }
+    .auth-fg .field-wrap {
+      position: relative;
+    }
+    .auth-fg .field-icon {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      color: #8a8070;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .auth-fg input {
+      width: 100%;
+      padding: 12px 40px 12px 40px;
+      border: 1.5px solid #d8d0c4;
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      background: #fff;
+      color: #1a1208;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .auth-fg input:focus {
+      border-color: #1a4a2e;
+      box-shadow: 0 0 0 3px rgba(26,74,46,0.1);
+    }
+    .auth-fg input.error {
+      border-color: #c0392b;
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+    }
+    .auth-fg .pass-toggle {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #8a8070;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .auth-fg .pass-toggle:hover { color: #1a4a2e; }
+
+    .auth-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Error/Success messages */
+    .auth-msg {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+      display: none;
+      font-family: var(--font-ui);
+      line-height: 1.6;
+    }
+    .auth-msg.show { display: flex; align-items: flex-start; gap: 10px; }
+    .auth-msg.error {
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.2);
+      color: #c0392b;
+    }
+    .auth-msg.success {
+      background: rgba(26,74,46,0.08);
+      border: 1px solid rgba(26,74,46,0.2);
+      color: #1a4a2e;
+    }
+
+    /* Submit button */
+    .auth-submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1a4a2e 0%, #2d6b45 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(26,74,46,0.3);
+      margin-top: 8px;
+    }
+    .auth-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(26,74,46,0.35);
+    }
+    .auth-submit-btn:active { transform: translateY(0); }
+    .auth-submit-btn:disabled {
+      opacity: 0.7;
+      cursor: default;
+      transform: none;
+    }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0;
+      color: #b0a898;
+      font-size: 0.8rem;
+      font-family: var(--font-ui);
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0d9cc;
+    }
+
+    .auth-switch-link {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7a7060;
+      font-family: var(--font-ui);
+    }
+    .auth-switch-link button {
+      background: none;
+      border: none;
+      color: #1a4a2e;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: var(--font-ui);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Password strength */
+    .pass-strength-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .pass-strength-bar span {
+      flex: 1;
+      height: 3px;
+      background: #e0d9cc;
+      border-radius: 3px;
+      transition: background 0.3s;
+    }
+    .pass-strength-bar.s1 span:nth-child(1) { background: #e74c3c; }
+    .pass-strength-bar.s2 span:nth-child(-n+2) { background: #e67e22; }
+    .pass-strength-bar.s3 span:nth-child(-n+3) { background: #f1c40f; }
+    .pass-strength-bar.s4 span { background: #1a4a2e; }
+    .pass-strength-label {
+      font-size: 0.75rem;
+      color: #8a8070;
+      margin-top: 4px;
+      font-family: var(--font-ui);
+    }
+
+    /* Checkbox */
+    .auth-check-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.83rem;
+      color: #7a7060;
+      font-family: var(--font-ui);
+      margin-bottom: 18px;
+    }
+    .auth-check-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #1a4a2e;
+      flex-shrink: 0;
+    }
+
+    /* Gold accent line */
+    .auth-gold-line {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #c9a84c, #f0d060);
+      border-radius: 3px;
+      margin: 0 0 20px 0;
+    }
+
+    /* Success screen */
+    .auth-success-screen {
+      text-align: center;
+      padding: 20px 0;
+      display: none;
+    }
+    .auth-success-screen.show { display: block; }
+    .auth-success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1a4a2e 0%, #2d6b45 100%);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #d4af37;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 30px rgba(26,74,46,0.3);
+      animation: successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes successPop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .auth-success-title {
+      font-family: 'El Messiri', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0d2b1a;
+      margin-bottom: 10px;
+    }
+    .auth-success-sub {
+      font-size: 0.9rem;
+      color: #7a7060;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .auth-page { grid-template-columns: 1fr; }
+      .auth-panel-left { display: none; }
+      .auth-panel-right { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="auth-page">
+
+  <!-- ══ LEFT PANEL ══ -->
+  <div class="auth-panel-left">
+    <!-- Architectural lines -->
+    <svg class="auth-arch-svg" viewBox="0 0 600 900" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#c9a84c" stroke-width="0.5" fill="none">
+        <line x1="0" y1="200" x2="600" y2="200"/>
+        <line x1="0" y1="700" x2="600" y2="700"/>
+        <line x1="200" y1="0" x2="200" y2="900"/>
+        <line x1="400" y1="0" x2="400" y2="900"/>
+        <rect x="120" y="120" width="360" height="660" rx="4"/>
+        <rect x="160" y="160" width="280" height="580" rx="4"/>
+        <line x1="120" y1="200" x2="480" y2="200"/>
+        <line x1="120" y1="700" x2="480" y2="700"/>
+        <ellipse cx="300" cy="450" rx="120" ry="180"/>
+        <ellipse cx="300" cy="450" rx="80" ry="130"/>
+        <line x1="300" y1="270" x2="300" y2="630"/>
+        <line x1="180" y1="450" x2="420" y2="450"/>
+      </g>
+    </svg>
+
+    <div class="auth-left-content">
+      <img src="../assets/images/logo-light.png" alt="زياد العياضي" class="auth-left-logo">
+
+      <h1 class="auth-left-title">
+        بوابة <em>العميل القانوني</em><br>المتميز
+      </h1>
+      <p class="auth-left-desc">
+        سجّل حسابك للحصول على خدمات قانونية مخصصة، حجز المواعيد، ومتابعة قضاياك بسرية تامة.
+      </p>
+
+      <ul class="auth-left-benefits">
+        <li>
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>حجز استشارات قانونية بضغطة زر</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>خصوصية وسرية تامة لبياناتك</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>سجل كامل بمواعيدك واستشاراتك</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-headset"></i>
+          <span>تواصل مباشر مع فريقنا القانوني</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-file-contract"></i>
+          <span>مراجعة وثائقك وعقودك بأمان</span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="auth-left-seal">
+      © 2026 مكتب زياد العياضي للاستشارات القانونية والمحاماة
+    </p>
+  </div>
+
+  <!-- ══ RIGHT PANEL (Form) ══ -->
+  <div class="auth-panel-right">
+    <div class="auth-form-wrap">
+
+      <a href="../index.html" class="auth-back-link">
+        <i class="fa-solid fa-arrow-right"></i>
+        العودة للرئيسية
+      </a>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-login" onclick="switchTab('login')">
+          <i class="fa-solid fa-right-to-bracket" style="margin-left:6px;"></i> تسجيل الدخول
+        </button>
+        <button class="auth-tab-btn" id="tab-register" onclick="switchTab('register')">
+          <i class="fa-solid fa-user-plus" style="margin-left:6px;"></i> حساب جديد
+        </button>
+      </div>
+
+      <!-- ══ LOGIN FORM ══ -->
+      <div class="auth-form-panel active" id="panel-login">
+        <div class="auth-gold-line"></div>
+        <h2 class="auth-form-title">أهلاً بعودتك</h2>
+        <p class="auth-form-sub">سجّل دخولك للوصول إلى خدماتك القانونية المتكاملة</p>
+
+        <div class="auth-msg error" id="login-err">
+          <i class="fa-solid fa-circle-exclamation" style="flex-shrink:0;margin-top:2px;"></i>
+          <span id="login-err-text"></span>
+        </div>
+
+        <div class="auth-fg">
+          <label for="login-email">البريد الإلكتروني</label>
+          <div class="field-wrap">
+            <i class="fa-regular fa-envelope field-icon"></i>
+            <input type="email" id="login-email" placeholder="name@example.com" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="auth-fg">
+          <label for="login-pass">كلمة المرور</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="login-pass" placeholder="كلمة المرور" autocomplete="current-password">
+            <button type="button" class="pass-toggle" onclick="togglePass('login-pass', this)">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="auth-submit-btn" id="login-btn" onclick="handleLogin()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          تسجيل الدخول
+        </button>
+
+        <div class="auth-divider">أو</div>
+
+        <p class="auth-switch-link">
+          ليس لديك حساب؟
+          <button onclick="switchTab('register')">أنشئ حساباً مجاناً</button>
+        </p>
+      </div>
+
+      <!-- ══ REGISTER FORM ══ -->
+      <div class="auth-form-panel" id="panel-register">
+        <div class="auth-gold-line"></div>
+        <h2 class="auth-form-title">إنشاء حساب جديد</h2>
+        <p class="auth-form-sub">انضم إلى عملائنا واحصل على تجربة قانونية استثنائية</p>
+
+        <div class="auth-msg error" id="reg-err">
+          <i class="fa-solid fa-circle-exclamation" style="flex-shrink:0;margin-top:2px;"></i>
+          <span id="reg-err-text"></span>
+        </div>
+
+        <div class="auth-form-row">
+          <div class="auth-fg">
+            <label for="reg-name">الاسم الكامل *</label>
+            <div class="field-wrap">
+              <i class="fa-solid fa-user field-icon"></i>
+              <input type="text" id="reg-name" placeholder="اسمك الكامل" autocomplete="name">
+            </div>
+          </div>
+          <div class="auth-fg">
+            <label for="reg-phone">رقم الجوال *</label>
+            <div class="field-wrap">
+              <i class="fa-solid fa-phone field-icon"></i>
+              <input type="tel" id="reg-phone" placeholder="+966 5X XXX XXXX" autocomplete="tel">
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-fg">
+          <label for="reg-email">البريد الإلكتروني *</label>
+          <div class="field-wrap">
+            <i class="fa-regular fa-envelope field-icon"></i>
+            <input type="email" id="reg-email" placeholder="name@example.com" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="auth-fg">
+          <label for="reg-pass">كلمة المرور *</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="reg-pass" placeholder="6 أحرف على الأقل" autocomplete="new-password" oninput="updateStrength(this.value)">
+            <button type="button" class="pass-toggle" onclick="togglePass('reg-pass', this)">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <div class="pass-strength-bar" id="strengthBar">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <p class="pass-strength-label" id="strengthLabel"></p>
+        </div>
+
+        <div class="auth-fg">
+          <label for="reg-pass2">تأكيد كلمة المرور *</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="reg-pass2" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password">
+            <button type="button" class="pass-toggle" onclick="togglePass('reg-pass2', this)">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <label class="auth-check-label">
+          <input type="checkbox" id="reg-terms">
+          أوافق على <a href="#" style="color:#1a4a2e;font-weight:700;text-decoration:underline;text-underline-offset:3px;">سياسة الخصوصية والشروط والأحكام</a>
+        </label>
+
+        <button class="auth-submit-btn" id="reg-btn" onclick="handleRegister()">
+          <i class="fa-solid fa-user-plus"></i>
+          إنشاء الحساب
+        </button>
+
+        <div class="auth-divider">أو</div>
+
+        <p class="auth-switch-link">
+          لديك حساب بالفعل؟
+          <button onclick="switchTab('login')">سجّل الدخول</button>
+        </p>
+      </div>
+
+      <!-- ══ SUCCESS SCREEN ══ -->
+      <div class="auth-success-screen" id="auth-success">
+        <div class="auth-success-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 class="auth-success-title" id="success-title">تم بنجاح!</h3>
+        <p class="auth-success-sub" id="success-sub">جاري تحويلك...</p>
+        <div class="loader-progress" style="margin: 0 auto;max-width:200px;">
+          <div class="loader-bar" style="animation-duration:2s;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/auth.js"></script>
+<script>
+  /* ── Check if already logged in ── */
+  (function() {
+    if (isLoggedIn()) {
+      const user = getCurrentUser();
+      if (user && user.is_admin) {
+        window.location.href = 'admin.html';
+      } else {
+        const params = new URLSearchParams(window.location.search);
+        const ret = params.get('return') || '../index.html';
+        window.location.href = ret;
+      }
+    }
+  })();
+
+  /* ── Tab Switching ── */
+  function switchTab(tab) {
+    ['login','register'].forEach(t => {
+      document.getElementById('panel-' + t).classList.toggle('active', t === tab);
+      document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+    });
+    clearMessages();
+  }
+
+  function clearMessages() {
+    ['login-err','reg-err'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('show');
+    });
+  }
+
+  /* ── Show Error ── */
+  function showError(prefix, msg) {
+    const el = document.getElementById(prefix + '-err');
+    const txt = document.getElementById(prefix + '-err-text');
+    if (el && txt) { txt.textContent = msg; el.classList.add('show'); }
+  }
+
+  /* ── Show Success Screen ── */
+  function showSuccess(title, sub, redirectUrl) {
+    ['panel-login','panel-register'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    document.querySelector('.auth-tabs').style.display = 'none';
+    document.querySelector('.auth-back-link').style.display = 'none';
+
+    const sc = document.getElementById('auth-success');
+    document.getElementById('success-title').textContent = title;
+    document.getElementById('success-sub').textContent = sub;
+    sc.classList.add('show');
+
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 2200);
+  }
+
+  /* ── Password Toggle ── */
+  function togglePass(inputId, btn) {
+    const inp = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      inp.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+  }
+
+  /* ── Password Strength ── */
+  function updateStrength(val) {
+    const bar = document.getElementById('strengthBar');
+    const lbl = document.getElementById('strengthLabel');
+    let score = 0;
+    if (val.length >= 6) score++;
+    if (val.length >= 10) score++;
+    if (/[A-Z]/.test(val) || /[a-z]/.test(val)) score++;
+    if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
+    bar.className = 'pass-strength-bar' + (score ? ' s' + score : '');
+    const labels = ['', 'ضعيفة', 'مقبولة', 'جيدة', 'قوية جداً ✓'];
+    lbl.textContent = val.length ? ('قوة كلمة المرور: ' + (labels[score] || '')) : '';
+  }
+
+  /* ── Handle Login ── */
+  async function handleLogin() {
+    clearMessages();
+    const email = document.getElementById('login-email').value.trim();
+    const pass  = document.getElementById('login-pass').value;
+
+    const btn = document.getElementById('login-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+
+    try {
+      const result = await authLogin(email, pass);
+      if (!result.ok) {
+        showError('login', result.error);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول';
+        return;
+      }
+
+      // Supabase returns the user object. We display their name from user_metadata or email.
+      const name = result.user.user_metadata?.full_name || result.user.email.split('@')[0];
+      const isAdmin = result.user.email.toLowerCase() === 'zaa.law.co@gmail.com';
+
+      // Write session immediately to localStorage with is_admin flag BEFORE redirect
+      localStorage.setItem('lf_session', JSON.stringify({
+        id:       result.user.id,
+        name:     name,
+        phone:    result.user.user_metadata?.phone || '',
+        email:    result.user.email,
+        is_admin: isAdmin
+      }));
+
+      // Determine redirect: admin → dashboard, client → return URL
+      const params = new URLSearchParams(window.location.search);
+      const ret = isAdmin ? 'admin.html' : (params.get('return') || '../index.html');
+
+      showSuccess(
+        isAdmin ? 'مرحباً بك في لوحة التحكم، ' + name + '!' : 'أهلاً، ' + name + '!',
+        'تم تسجيل دخولك بنجاح. جاري تحويلك...',
+        ret
+      );
+    } catch (err) {
+      showError('login', 'حدث خطأ أثناء تسجيل الدخول: ' + err.message);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول';
+    }
+  }
+
+  /* ── Handle Register ── */
+  async function handleRegister() {
+    clearMessages();
+    const name  = document.getElementById('reg-name').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const pass  = document.getElementById('reg-pass').value;
+    const pass2 = document.getElementById('reg-pass2').value;
+    const terms = document.getElementById('reg-terms').checked;
+
+    if (!terms) {
+      showError('reg', 'يرجى الموافقة على سياسة الخصوصية والشروط والأحكام.');
+      return;
+    }
+    if (pass !== pass2) {
+      showError('reg', 'كلمتا المرور غير متطابقتين. يرجى التحقق والمحاولة مجدداً.');
+      return;
+    }
+
+    const btn = document.getElementById('reg-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
+
+    try {
+      const result = await authRegister(name, phone, email, pass);
+      if (!result.ok) {
+        showError('reg', result.error);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> إنشاء الحساب';
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const ret = params.get('return') || '../index.html';
+
+      showSuccess(
+        'مرحباً بك، ' + name + '!',
+        'تم إنشاء حسابك بنجاح. جاري تحويلك لحجز استشارتك...',
+        ret
+      );
+    } catch (err) {
+      showError('reg', 'حدث خطأ أثناء التسجيل: ' + err.message);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> إنشاء الحساب';
+    }
+  }
+
+  /* ── Enter key support ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const loginActive = document.getElementById('panel-login').classList.contains('active');
+      if (loginActive) handleLogin();
+      else handleRegister();
+    }
+  });
+</script>
+</body>
+</html>

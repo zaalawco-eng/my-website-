@@ -1,0 +1,114 @@
+/* =========================================
+   RESPONSIVE — Law Firm (Olive/Cream Theme)
+   ========================================= */
+
+/* ── Tablet: 1024px ── */
+@media (max-width: 1024px) {
+  .services-grid  { grid-template-columns: repeat(2,1fr); }
+  .footer-top     { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .about-layout   { gap: 48px; }
+  .process-steps  { grid-template-columns: repeat(2,1fr); gap: 40px; }
+  .process-steps::before { display: none; }
+  .why-grid       { gap: 40px; }
+  .faq-layout     { gap: 48px; }
+  .pricing-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ── Tablet: 768px ── */
+@media (max-width: 768px) {
+  .section { padding: 65px 0; }
+
+  /* Nav */
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+  .lang-btn   { display: none; }
+
+  .nav-actions .btn { padding: 9px 18px; font-size: 0.86rem; }
+
+  /* Hero */
+  .hero-content { padding: 120px 20px 180px; }
+  .hero-actions { flex-direction: column; align-items: stretch; max-width: 280px; margin: 0 auto; }
+  .hero-actions .btn { justify-content: center; }
+
+  /* Stats */
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+
+  /* About */
+  .about-layout { grid-template-columns: 1fr; gap: 36px; }
+  .about-visual-panel { display: none; }
+  .about-vals { grid-template-columns: repeat(3,1fr); }
+
+  /* Services */
+  .services-intro { grid-template-columns: 1fr; gap: 20px; }
+  .services-grid  { grid-template-columns: repeat(2,1fr); }
+
+  /* Why */
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card-stack { display: none; }
+
+  /* Process */
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* Testimonials */
+  .testimonials-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* FAQ */
+  .faq-layout { grid-template-columns: 1fr; gap: 32px; }
+  .faq-intro-col { position: static; }
+
+  /* Blog */
+  .blog-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* Contact */
+  .contact-layout { grid-template-columns: 1fr; gap: 36px; }
+
+  /* Booking CTA */
+  .booking-cta-inner { grid-template-columns: 1fr; gap: 36px; }
+  .cta-form-card { display: none; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Modal */
+  .modal-box { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+}
+
+/* ── Mobile: 480px ── */
+@media (max-width: 480px) {
+  :root { font-size: 14.5px; }
+
+  .container { width: 96%; padding: 0 10px; }
+  .section { padding: 50px 0; }
+
+  .section-title { font-size: 1.8rem; }
+
+  .hero-content { padding: 110px 16px 160px; }
+  .hero-title { font-size: 2.4rem; }
+
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .stat-num  { font-size: 2.2rem; }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .about-vals    { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+
+  .btn-lg { padding: 14px 28px; font-size: 0.96rem; }
+
+  .cta-type-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Large: 1400px+ ── */
+@media (min-width: 1400px) {
+  .container { max-width: 1340px; }
+  .services-grid { grid-template-columns: repeat(4,1fr); }
+}
+
+/* ── Print ── */
+@media print {
+  #navbar, .wa-float, #top-btn, .page-loader,
+  .hero-pattern, .hero-arch { display: none !important; }
+  body { background: #fff; color: #000; }
+}
