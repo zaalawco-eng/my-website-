@@ -1,4 +1,4 @@
-/* booking.js — global functions accessible via HTML onclick */
+﻿/* booking.js — global functions accessible via HTML onclick */
 
 let step = 1, mType = 1;
 
@@ -149,7 +149,7 @@ async function submitBook(method = 'unpaid', sender = '', receipt = '') {
   );
 
   const waBtn = document.querySelector('#mStep4 a[href*="wa.me"]');
-  if (waBtn) waBtn.href = `https://wa.me/966XXXXXXXXX?text=${msg}`;
+  if (waBtn) waBtn.href = `https://wa.me/966566989610?text=${msg}`;
 
   return success;
 }
