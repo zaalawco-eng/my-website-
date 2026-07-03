@@ -1669,6 +1669,58 @@ h4, h5, h6, .nav-links a, button, label, .section-label {
 
 .contact-item a:hover { color: var(--olive-mid); }
 
+/* Interactive Google Map Card */
+.contact-map-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--ease);
+}
+
+.contact-map-card:hover {
+  border-color: var(--olive-mid);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-map-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.map-badge-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  background: #ffffff;
+  color: #1a73e8;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.map-badge-btn:hover {
+  background: #f8f9fa;
+  color: #1557b0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
+
 /* Form */
 .contact-form-panel {
   background: var(--white);
