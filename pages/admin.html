@@ -1065,7 +1065,10 @@ function renderBookings(data) {
       <tr>
         <td style="color:var(--text-muted)">${i + 1}</td>
         <td><div class="user-cell"><div class="user-initial">${(b.name||'?')[0]}</div>${b.name || '—'}</div></td>
-        <td><a href="tel:${b.phone}" style="color:var(--gold);text-decoration:none;">${b.phone || '—'}</a></td>
+        <td style="white-space:nowrap;">
+          <a href="tel:${b.phone}" style="color:var(--gold);text-decoration:none;">${b.phone || '—'}</a>
+          ${b.phone ? `<a href="https://wa.me/${(b.phone||'').replace(/[^0-9]/g,'')}" target="_blank" title="تواصل عبر واتساب" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#25D366;color:#fff;border-radius:50%;margin-right:6px;font-size:0.85rem;text-decoration:none;"><i class='fa-brands fa-whatsapp'></i></a>` : ''}
+        </td>
         <td style="font-size:0.8rem;color:var(--text-muted);">${b.email || '—'}</td>
         <td style="font-size:0.82rem;">${b.service || '—'}</td>
         <td><span style="font-size:0.82rem;">${b.type || '—'}</span></td>
@@ -1150,7 +1153,10 @@ function renderMessages(data) {
       <tr>
         <td style="color:var(--text-muted)">${i + 1}</td>
         <td><div class="user-cell"><div class="user-initial">${(m.name||'?')[0]}</div>${m.name || '—'}</div></td>
-        <td><a href="tel:${m.phone}" style="color:var(--gold);text-decoration:none;">${m.phone || '—'}</a></td>
+        <td style="white-space:nowrap;">
+          <a href="tel:${m.phone}" style="color:var(--gold);text-decoration:none;">${m.phone || '—'}</a>
+          ${m.phone ? `<a href="https://wa.me/${(m.phone||'').replace(/[^0-9]/g,'')}" target="_blank" title="تواصل عبر واتساب" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#25D366;color:#fff;border-radius:50%;margin-right:6px;font-size:0.85rem;text-decoration:none;"><i class='fa-brands fa-whatsapp'></i></a>` : ''}
+        </td>
         <td style="font-size:0.8rem;color:var(--text-muted);">${m.email || '—'}</td>
         <td style="font-size:0.82rem;">${m.service || '—'}</td>
         <td>
@@ -1235,7 +1241,10 @@ function renderUsers(data) {
       <td style="color:var(--text-muted)">${i + 1}</td>
       <td><div class="user-cell"><div class="user-initial">${(u.name||'?')[0]}</div>${u.name || '—'}</div></td>
       <td style="font-size:0.82rem;">${u.email || '—'}</td>
-      <td><a href="tel:${u.phone}" style="color:var(--gold);text-decoration:none;">${u.phone || '—'}</a></td>
+      <td style="white-space:nowrap;">
+        <a href="tel:${u.phone}" style="color:var(--gold);text-decoration:none;">${u.phone || '—'}</a>
+        ${u.phone ? `<a href="https://wa.me/${(u.phone||'').replace(/[^0-9]/g,'')}" target="_blank" title="تواصل عبر واتساب" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#25D366;color:#fff;border-radius:50%;margin-right:6px;font-size:0.85rem;text-decoration:none;"><i class='fa-brands fa-whatsapp'></i></a>` : ''}
+      </td>
       <td style="font-size:0.78rem;color:var(--text-muted);">${formatDate(u.created_at)}</td>
       <td style="font-size:0.78rem;color:var(--text-muted);">—</td>
     </tr>
